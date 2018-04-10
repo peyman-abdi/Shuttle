@@ -11,6 +11,6 @@ import retrofit2.http.Query;
 public interface AhangifyService {
 
     @POST("/api/search")
-    Single<AhangifySearchResult> getSearchResult(@Query("page") int page, @Body AhangifySearchQuery query);
+    Single<AhangifySearchResult> getSearchResult(@Query("page") int page, @Query("limit") int limit, @Body AhangifySearchQuery query);
 
 }

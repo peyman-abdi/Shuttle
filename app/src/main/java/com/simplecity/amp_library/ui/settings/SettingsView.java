@@ -45,4 +45,7 @@ public interface SettingsView extends PurchaseView {
     void showBlacklistDialog(MaterialDialog dialog);
 
     void showWhitelistDialog(MaterialDialog dialog);
+
+    void showSearchLimitDialog(MaterialDialog dialog);
+
 }

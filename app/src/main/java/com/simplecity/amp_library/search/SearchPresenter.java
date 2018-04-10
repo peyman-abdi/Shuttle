@@ -150,7 +150,7 @@ public class SearchPresenter extends Presenter<SearchView> implements
 
             boolean searchOnline = query.length() > 3 || onlineMode;
             Single<List<ViewModel>> searchObservable = searchOnline ? HttpClient.getInstance().ahangifyService
-                    .getSearchResult(this.currentPage, new AhangifySearchQuery(query))
+                    .getSearchResult(this.currentPage, SettingsManager.getInstance().getQuickSearchLimit(), new AhangifySearchQuery(query))
                     .subscribeOn(Schedulers.single())
                     .lift(new SearchAPIFilterOperator(requestManager)) : Single.just(Collections.emptyList());
 
@@ -185,7 +185,7 @@ public class SearchPresenter extends Presenter<SearchView> implements
 
     private void loadMorePages() {
         Single<List<ViewModel>> searchObservable = HttpClient.getInstance().ahangifyService
-                .getSearchResult(++this.currentPage, new AhangifySearchQuery(query))
+                .getSearchResult(++this.currentPage, SettingsManager.getInstance().getFullSearchLimit(), new AhangifySearchQuery(query))
                 .subscribeOn(Schedulers.single())
                 .lift(new SearchAPIFilterOperator(requestManager));
         performSearchSubscription = searchObservable
@@ -328,7 +328,7 @@ public class SearchPresenter extends Presenter<SearchView> implements
                         List<Song> songs = Stream.of(ahangifySearchResult.songs.data).map(AhangifyTrack::getSong).collect(Collectors.toList());
 
                         SongViewClickListener songViewClickListener = new SongViewClickListener(songs);
-                        List<ViewModel> viewModels = Stream.of(songs).limit(onlineMode ? 10:3).map(song -> {
+                        List<ViewModel> viewModels = Stream.of(songs).limit(onlineMode ? SettingsManager.getInstance().getFullSearchLimit():SettingsManager.getInstance().getQuickSearchLimit()).map(song -> {
                             SongView songView = new SongView(song, requestManager);
                             songView.setClickListener(songViewClickListener);
                             return  songView;

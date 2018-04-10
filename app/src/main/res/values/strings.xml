@@ -828,12 +828,25 @@
     <string name="saf_access_required_message">Shuttle requires permission to access these files. Please pick the directory containing your music.</string>
     <string name="saf_show_files_button">Show files</string>
 
+    <!-- Online: Ahangify -->
+    <!-- Online search result header title -->
     <string name="ahangify_songs">Ahangify Songs</string>
-
+    <!-- Online quick search show full search -->
     <string name="show_all_results">Show all results</string>
+    <!-- Online full search load more result -->
     <string name="show_more_results">Load more results</string>
-
+    <!-- Download now button -->
     <string name="download_now">Download now</string>
+    <!-- Download queue button -->
     <string name="download_queue">Download queue</string>
+
+    <!-- Preference: Online -->
+    <string name="pref_title_online">Online</string>
+    <string name="pref_online_search">Search</string>
+    <string name="pref_online_search_quick_limit">Quick Search Limit</string>
+    <string name="pref_online_search_quick_limit_summery">How many items to load when searching in online and local titles</string>
+    <string name="pref_online_search_full_limit">Full Search Limit</string>
+    <string name="pref_online_search_full_limit_summery">How many items to load when searching in online titles only</string>
+    <string name="pref_online_search_limit_dialog_title">Search Records Limit</string>
 
 </resources>

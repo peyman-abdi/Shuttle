@@ -19,6 +19,7 @@ import com.simplecity.amp_library.ShuttleApplication;
 import com.simplecity.amp_library.billing.BillingManager;
 import com.simplecity.amp_library.model.CategoryItem;
 import com.simplecity.amp_library.model.InclExclItem;
+import com.simplecity.amp_library.search.OnlineSearchFragment;
 import com.simplecity.amp_library.services.ArtworkDownloadService;
 import com.simplecity.amp_library.ui.activities.BaseActivity;
 import com.simplecity.amp_library.ui.dialog.ChangelogDialog;
@@ -302,6 +303,20 @@ public class SettingsPresenter extends PurchasePresenter<SettingsView> {
         SettingsView settingsView = getView();
         if (settingsView != null) {
             settingsView.showWhitelistDialog(InclExclDialog.getDialog(context, InclExclItem.Type.INCLUDE));
+        }
+    }
+
+    // Online search
+    public void viewQuickSearchLimitClicked(Context context) {
+        SettingsView settingsView = getView();
+        if (settingsView != null) {
+            settingsView.showSearchLimitDialog(OnlineSearchFragment.getSearchLimitDialog(context, true));
+        }
+    }
+    public void viewFullSearchLimitClicked(Context context) {
+        SettingsView settingsView = getView();
+        if (settingsView != null) {
+            settingsView.showSearchLimitDialog(OnlineSearchFragment.getSearchLimitDialog(context, false));
         }
     }
 }

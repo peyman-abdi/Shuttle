@@ -30,4 +30,11 @@
         <item>@string/playlists_title</item>
     </string-array>
 
+    <!-- Do not translate -->
+    <string-array name="pref_search_limit">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
+
 </resources>

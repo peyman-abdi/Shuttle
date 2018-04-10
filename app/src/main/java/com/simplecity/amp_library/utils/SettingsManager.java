@@ -57,11 +57,28 @@ public class SettingsManager extends BaseSettingsManager {
     // Upgrade
     public static String KEY_PREF_UPGRADE = "pref_upgrade";
 
+    // Online search
+    public static String KEY_PREF_QUICK_SEARCH_LIMIT = "pref_search_quick_limit";
+    public static String KEY_PREF_FULL_SEARCH_LIMIT = "pref_search_full_limit";
+
     // Whether the 'rate' snackbar has been seen during this session
     public boolean hasSeenRateSnackbar = false;
 
     private SettingsManager() {
 
+    }
+
+    public int getQuickSearchLimit() {
+        return getInt(KEY_PREF_QUICK_SEARCH_LIMIT, 5);
+    }
+    public void setQuickSearchLimit(int limit) {
+        setInt(KEY_PREF_QUICK_SEARCH_LIMIT, limit);
+    }
+    public int getFullSearchLimit() {
+        return getInt(KEY_PREF_FULL_SEARCH_LIMIT, 15);
+    }
+    public void setFullSearchLimit(int limit) {
+        setInt(KEY_PREF_FULL_SEARCH_LIMIT, limit);
     }
 
     public static final String KEY_SHOW_LOCKSCREEN_ARTWORK = "pref_show_lockscreen_artwork";

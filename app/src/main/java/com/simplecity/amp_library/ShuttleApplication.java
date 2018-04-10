@@ -153,6 +153,7 @@ public class ShuttleApplication extends Application {
             PreferenceManager.setDefaultValues(this, R.xml.settings_headset, true);
             PreferenceManager.setDefaultValues(this, R.xml.settings_scrobbling, true);
             PreferenceManager.setDefaultValues(this, R.xml.settings_themes, true);
+            PreferenceManager.setDefaultValues(this, R.xml.settings_online, true);
         }
 
         // Turn off logging for jaudiotagger.

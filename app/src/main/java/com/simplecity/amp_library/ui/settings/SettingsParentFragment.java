@@ -387,6 +387,24 @@ public class SettingsParentFragment extends BaseNavigationController implements
                     upgradePreference.setVisible(false);
                 }
             }
+
+            // Online
+                // Quick search
+            Preference quickSearch = findPreference(SettingsManager.KEY_PREF_QUICK_SEARCH_LIMIT);
+            if (quickSearch != null) {
+                quickSearch.setOnPreferenceClickListener(preference -> {
+                    settingsPresenter.viewQuickSearchLimitClicked(getContext());
+                    return true;
+                });
+            }
+                // Full search
+            Preference fullSearch = findPreference(SettingsManager.KEY_PREF_FULL_SEARCH_LIMIT);
+            if (fullSearch != null) {
+                fullSearch.setOnPreferenceClickListener(preference -> {
+                    settingsPresenter.viewFullSearchLimitClicked(getContext());
+                    return true;
+                });
+            }
         }
 
         @Override
@@ -426,6 +444,9 @@ public class SettingsParentFragment extends BaseNavigationController implements
                         break;
                     case "pref_playback":
                         getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_playback), "PlaybackSettings");
+                        break;
+                    case "pref_online":
+                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_online), "OnlineSettings");
                         break;
                     case "pref_headset":
                         getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_headset), "HeadsetSettings");
@@ -586,6 +607,11 @@ public class SettingsParentFragment extends BaseNavigationController implements
 
         @Override
         public void showWhitelistDialog(MaterialDialog dialog) {
+            dialog.show();
+        }
+
+        @Override
+        public void showSearchLimitDialog(MaterialDialog dialog) {
             dialog.show();
         }
     }
