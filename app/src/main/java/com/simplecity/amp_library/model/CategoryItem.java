@@ -45,8 +45,8 @@ public class CategoryItem {
 
     public static List<CategoryItem> getCategoryItems(SharedPreferences sharedPreferences) {
         List<CategoryItem> items = new ArrayList<>();
-        items.add(new CategoryItem(Type.GENRES, sharedPreferences));
-        items.add(new CategoryItem(Type.SUGGESTED, sharedPreferences));
+//        items.add(new CategoryItem(Type.GENRES, sharedPreferences));
+//        items.add(new CategoryItem(Type.SUGGESTED, sharedPreferences));
         items.add(new CategoryItem(Type.ARTISTS, sharedPreferences));
         items.add(new CategoryItem(Type.ALBUMS, sharedPreferences));
         items.add(new CategoryItem(Type.SONGS, sharedPreferences));

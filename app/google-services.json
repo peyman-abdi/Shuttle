@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "101871986046",
+    "project_id": "shuttle-e8533"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101871986046:android:2b0961cc23ee8810",
+        "android_client_info": {
+          "package_name": "another.music.player"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101871986046-8vcorjpikjcsuspm1j32b7ms6ugp10av.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "101871986046-1vcumf0m6ualrdjoiphl4290bklcq1fb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "another.music.player",
+            "certificate_hash": "2c648d2e98e0e4bc17e1a745d5acf345d136fa46"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3rnpeEjhxip0KqefILOEVdb7ilRCnhDE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

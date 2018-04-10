@@ -10,6 +10,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
@@ -88,6 +89,8 @@ public class SearchFragment extends BaseFragment implements
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    protected boolean onlineMode = false;
+
     SearchPresenter searchPresenter;
 
     View rootView;
@@ -109,7 +112,7 @@ public class SearchFragment extends BaseFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        searchPresenter = new SearchPresenter(new PrefixHighlighter(), Glide.with(this));
+        searchPresenter = new SearchPresenter(new PrefixHighlighter(), Glide.with(this), onlineMode);
 
         query = getArguments().getString(ARG_QUERY);
 
@@ -130,6 +133,9 @@ public class SearchFragment extends BaseFragment implements
         ButterKnife.bind(this, rootView);
 
         toolbar.inflateMenu(R.menu.menu_search);
+        if (onlineMode) {
+            toolbar.getMenu().removeItem(toolbar.getMenu().findItem(R.id.search_details).getItemId());
+        }
         toolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.search_fuzzy:
@@ -147,12 +153,14 @@ public class SearchFragment extends BaseFragment implements
             }
             return false;
         });
-
         setupContextualToolbar();
 
         MenuItem searchItem = toolbar.getMenu().findItem(R.id.search);
         searchItem.expandActionView();
         searchView = (SearchView) searchItem.getActionView();
+        if (!TextUtils.isEmpty(query)) {
+            searchView.setQuery(query, false);
+        }
 
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
@@ -224,6 +232,41 @@ public class SearchFragment extends BaseFragment implements
     }
 
     @Override
+    public void addItems(@NonNull List<ViewModel> items) {
+        adapter.addItems(items);
+    }
+
+    @Override
+    public void removeItem(@NonNull ViewModel item) {
+        adapter.removeItem(item);
+    }
+
+    @Override
+    public void removeItem(int index) {
+        adapter.removeItem(index);
+    }
+
+    @Override
+    public void addItem(@NonNull ViewModel item) {
+        adapter.addItem(item);
+    }
+
+    @Override
+    public void addItem(int position, @NonNull ViewModel item) {
+        adapter.addItem(position, item);
+    }
+
+    @Override
+    public void removeLoadingView() {
+        adapter.removeItem(loadingView);
+    }
+
+    @Override
+    public void addLoadingView() {
+        adapter.addItem(loadingView);
+    }
+
+    @Override
     public void setFilterFuzzyChecked(boolean checked) {
         toolbar.getMenu().findItem(R.id.search_fuzzy).setChecked(checked);
     }
@@ -267,6 +310,14 @@ public class SearchFragment extends BaseFragment implements
         inputMethodManager.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
         String transitionName = ViewCompat.getTransitionName(transitionView);
         searchView.getHandler().postDelayed(() -> pushDetailFragment(AlbumDetailFragment.newInstance(album, transitionName), transitionView), 50);
+    }
+
+    @Override
+    public void goToOnlineSearch(String query) {
+        searchView.getHandler().postDelayed(() -> {
+            OnlineSearchFragment fragment = OnlineSearchFragment.newOnlineInstance(query);
+            getNavigationController().pushViewController(fragment, "SearchOnlineFragment");
+        }, 50);
     }
 
     @Override

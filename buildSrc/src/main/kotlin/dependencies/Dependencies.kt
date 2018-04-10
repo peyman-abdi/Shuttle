@@ -76,7 +76,7 @@ object Dependencies {
     object Plugins {
 
         object Versions {
-            const val androidGradlePlugin = "3.2.0-alpha04"
+            const val androidGradlePlugin = "3.2.0-alpha09"
             const val kotlin = "1.2.30"
             const val dexcountGradlePlugin = "0.8.2"
             const val fabricGradlePlugin = "1.+"
@@ -129,6 +129,7 @@ object Dependencies {
             const val retrofit = "2.3.0"
             const val retrofitGson = "2.3.0"
             const val sqlBrite = "2.0.0"
+            const val rx2 = "2.4.0"
         }
 
         const val haha = "com.squareup.haha:haha:${Versions.haha}"
@@ -139,6 +140,7 @@ object Dependencies {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofitGson}"
         const val sqlBrite = "com.squareup.sqlbrite2:sqlbrite:${Versions.sqlBrite}"
+        const val rx2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.rx2}"
     }
 
 

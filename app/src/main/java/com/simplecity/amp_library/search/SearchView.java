@@ -20,6 +20,13 @@ public interface SearchView {
     void setEmpty(boolean empty);
 
     Disposable setItems(@NonNull List<ViewModel> items);
+    void addItems(@NonNull List<ViewModel> items);
+    void addItem(@NonNull ViewModel item);
+    void addItem(int position, @NonNull ViewModel item);
+    void removeItem(@NonNull ViewModel item);
+    void removeItem(int index);
+    void removeLoadingView();
+    void addLoadingView();
 
     void setFilterFuzzyChecked(boolean checked);
 
@@ -36,6 +43,8 @@ public interface SearchView {
     void goToArtist(AlbumArtist albumArtist, View transitionView);
 
     void goToAlbum(Album album, View transitionView);
+
+    void goToOnlineSearch(String query);
 
     void showUpgradeDialog();
 }

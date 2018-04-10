@@ -118,6 +118,10 @@ public class MenuUtils implements MusicUtils.Defs {
         PlaylistUtils.createPlaylistMenu(sub);
     }
 
+    public static void setupOnlineSongMenu(PopupMenu menu) {
+        menu.inflate(R.menu.menu_online_song);
+    }
+
     public static Toolbar.OnMenuItemClickListener getQueueMenuClickListener(
             Context context, Single<List<Song>> songsSingle,
             UnsafeConsumer<DeleteDialog> deleteDialogCallback,

@@ -108,6 +108,9 @@ public class Song implements
     }
 
     public Song(Cursor cursor) {
+        if (cursor == null) {
+            return;
+        }
 
         id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
 

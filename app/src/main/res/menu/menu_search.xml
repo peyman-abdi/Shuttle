@@ -11,6 +11,7 @@
         app:showAsAction="always|collapseActionView"/>
 
     <item
+        android:id="@+id/search_details"
         android:icon="@drawable/ic_sort_24dp"
         android:title="@string/search_filter"
         app:showAsAction="ifRoom">

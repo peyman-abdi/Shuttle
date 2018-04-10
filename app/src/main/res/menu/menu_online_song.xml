@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/downloadNow"
+        android:title="@string/download_now"/>
+    <item
+        android:id="@+id/downloadQueue"
+        android:title="@string/download_queue"/>
+</menu>

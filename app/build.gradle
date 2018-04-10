@@ -68,7 +68,7 @@ android {
         // This API key is provided for convenience. Please go to https://www.last.fm/api/account/create and create your own.
         buildConfigField("String", "LASTFM_API_KEY", "\"${getProperty(getProperties('../public.properties'), 'LASTFM_API_KEY')}\"")
 
-        manifestPlaceholders = [CRASHLYTICS_API_KEY: "dummy-key"]
+        manifestPlaceholders = [CRASHLYTICS_API_KEY: "dfsfsgsgsdgsdgsdgsdgsg"]
     }
 
     signingConfigs {
@@ -230,6 +230,8 @@ dependencies {
     implementation Dependencies.Square.retrofit
     implementation Dependencies.Square.retrofitGson
     implementation Dependencies.Square.sqlBrite
+    implementation Dependencies.Square.rx2
+
     debugImplementation Dependencies.Square.haha
     debugImplementation Dependencies.Square.leakCanaryDebug
     releaseImplementation Dependencies.Square.leakCanaryRel

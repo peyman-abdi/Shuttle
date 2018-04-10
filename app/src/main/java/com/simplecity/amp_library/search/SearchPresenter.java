@@ -12,6 +12,10 @@ import com.bumptech.glide.RequestManager;
 import com.simplecity.amp_library.R;
 import com.simplecity.amp_library.ShuttleApplication;
 import com.simplecity.amp_library.format.PrefixHighlighter;
+import com.simplecity.amp_library.http.HttpClient;
+import com.simplecity.amp_library.http.ahangify.AhangifySearchQuery;
+import com.simplecity.amp_library.http.ahangify.AhangifySearchResult;
+import com.simplecity.amp_library.http.ahangify.AhangifyTrack;
 import com.simplecity.amp_library.model.Album;
 import com.simplecity.amp_library.model.AlbumArtist;
 import com.simplecity.amp_library.model.Header;
@@ -19,6 +23,7 @@ import com.simplecity.amp_library.model.Song;
 import com.simplecity.amp_library.ui.adapters.ViewType;
 import com.simplecity.amp_library.ui.modelviews.AlbumArtistView;
 import com.simplecity.amp_library.ui.modelviews.AlbumView;
+import com.simplecity.amp_library.ui.modelviews.ButtonView;
 import com.simplecity.amp_library.ui.modelviews.SearchHeaderView;
 import com.simplecity.amp_library.ui.modelviews.SongView;
 import com.simplecity.amp_library.ui.presenters.Presenter;
@@ -44,6 +49,7 @@ import io.reactivex.SingleObserver;
 import io.reactivex.SingleOperator;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class SearchPresenter extends Presenter<SearchView> implements
         AlbumView.ClickListener,
@@ -63,20 +69,26 @@ public class SearchPresenter extends Presenter<SearchView> implements
     private Disposable setItemsSubscription;
 
     private String query;
+    private int currentPage;
+
+    private boolean onlineMode;
 
     @Inject
-    public SearchPresenter(PrefixHighlighter prefixHighlighter, RequestManager requestManager) {
+    public SearchPresenter(PrefixHighlighter prefixHighlighter, RequestManager requestManager, boolean onlineMode) {
         this.prefixHighlighter = prefixHighlighter;
         this.requestManager = requestManager;
+        this.onlineMode = onlineMode;
     }
 
     @Override
     public void bindView(@NonNull SearchView view) {
         super.bindView(view);
 
-        view.setFilterFuzzyChecked(SettingsManager.getInstance().getSearchFuzzy());
-        view.setFilterArtistsChecked(SettingsManager.getInstance().getSearchArtists());
-        view.setFilterAlbumsChecked(SettingsManager.getInstance().getSearchAlbums());
+        if (!onlineMode) {
+            view.setFilterFuzzyChecked(SettingsManager.getInstance().getSearchFuzzy());
+            view.setFilterArtistsChecked(SettingsManager.getInstance().getSearchArtists());
+            view.setFilterAlbumsChecked(SettingsManager.getInstance().getSearchAlbums());
+        }
     }
 
     @Override
@@ -89,12 +101,15 @@ public class SearchPresenter extends Presenter<SearchView> implements
     }
 
     void queryChanged(@Nullable String query) {
+        queryChanged(query, false);
+    }
+    void queryChanged(@Nullable String query, boolean force_refresh) {
 
         if (TextUtils.isEmpty(query)) {
             query = "";
         }
 
-        if (query.equals(this.query)) {
+        if (query.equals(this.query) && !force_refresh) {
             return;
         }
 
@@ -109,6 +124,7 @@ public class SearchPresenter extends Presenter<SearchView> implements
 
         if (searchView != null) {
 
+            this.currentPage = 1;
             searchView.setLoading(true);
 
             //We've received a new refresh call. Unsubscribe the in-flight subscription if it exists.
@@ -116,29 +132,36 @@ public class SearchPresenter extends Presenter<SearchView> implements
                 performSearchSubscription.dispose();
             }
 
-            boolean searchArtists = SettingsManager.getInstance().getSearchArtists();
+            boolean searchArtists = SettingsManager.getInstance().getSearchArtists() && !onlineMode;
 
             Single<List<ViewModel>> albumArtistsObservable = searchArtists ? DataManager.getInstance().getAlbumArtistsRelay()
                     .first(Collections.emptyList())
                     .lift(new AlbumArtistFilterOperator(query, requestManager, prefixHighlighter)) : Single.just(Collections.emptyList());
 
-            boolean searchAlbums = SettingsManager.getInstance().getSearchAlbums();
+            boolean searchAlbums = SettingsManager.getInstance().getSearchAlbums() && !onlineMode;
 
             Single<List<ViewModel>> albumsObservable = searchAlbums ? DataManager.getInstance().getAlbumsRelay()
                     .first(Collections.emptyList())
                     .lift(new AlbumFilterOperator(query, requestManager, prefixHighlighter)) : Single.just(Collections.emptyList());
 
-            Single<List<ViewModel>> songsObservable = DataManager.getInstance().getSongsRelay()
+            Single<List<ViewModel>> songsObservable = !onlineMode ? DataManager.getInstance().getSongsRelay()
                     .first(Collections.emptyList())
-                    .lift(new SongFilterOperator(query, requestManager, prefixHighlighter));
+                    .lift(new SongFilterOperator(query, requestManager, prefixHighlighter)) : Single.just(Collections.emptyList());
+
+            boolean searchOnline = query.length() > 3 || onlineMode;
+            Single<List<ViewModel>> searchObservable = searchOnline ? HttpClient.getInstance().ahangifyService
+                    .getSearchResult(this.currentPage, new AhangifySearchQuery(query))
+                    .subscribeOn(Schedulers.single())
+                    .lift(new SearchAPIFilterOperator(requestManager)) : Single.just(Collections.emptyList());
 
             performSearchSubscription = Single.zip(
-                    albumArtistsObservable, albumsObservable, songsObservable,
-                    (adaptableItems, adaptableItems2, adaptableItems3) -> {
+                    albumArtistsObservable, albumsObservable, songsObservable, searchObservable,
+                    (adaptableItems, adaptableItems2, adaptableItems3, adaptableItems4) -> {
                         List<ViewModel> list = new ArrayList<>();
-                        list.addAll(adaptableItems);
-                        list.addAll(adaptableItems2);
+                        list.addAll(adaptableItems4);
                         list.addAll(adaptableItems3);
+                        list.addAll(adaptableItems2);
+                        list.addAll(adaptableItems);
                         return list;
                     })
                     .observeOn(AndroidSchedulers.mainThread())
@@ -158,6 +181,23 @@ public class SearchPresenter extends Presenter<SearchView> implements
 
             addDisposable(performSearchSubscription);
         }
+    }
+
+    private void loadMorePages() {
+        Single<List<ViewModel>> searchObservable = HttpClient.getInstance().ahangifyService
+                .getSearchResult(++this.currentPage, new AhangifySearchQuery(query))
+                .subscribeOn(Schedulers.single())
+                .lift(new SearchAPIFilterOperator(requestManager));
+        performSearchSubscription = searchObservable
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(adaptableItems -> {
+                    SearchView searchView = getView();
+                    if (searchView != null) {
+                        searchView.removeLoadingView();
+                        searchView.addItems(adaptableItems);
+                    }
+                }, error -> LogUtils.logException(TAG, "Error refreshing adapter", error));
+        addDisposable(performSearchSubscription);
     }
 
     void setSearchFuzzy(boolean searchFuzzy) {
@@ -260,6 +300,79 @@ public class SearchPresenter extends Presenter<SearchView> implements
                 }
         ));
         menu.show();
+    }
+
+    private class SearchAPIFilterOperator implements SingleOperator<List<ViewModel>, AhangifySearchResult> {
+
+        RequestManager requestManager;
+
+        SearchHeaderView songsHeader = new SearchHeaderView(new Header(ShuttleApplication.getInstance().getString(R.string.ahangify_songs)));
+        ButtonView songsShowAll = new ButtonView(ShuttleApplication.getInstance().getString(R.string.show_all_results));
+        ButtonView loadMoreResults = new ButtonView(ShuttleApplication.getInstance().getString(R.string.show_more_results));
+
+        SearchAPIFilterOperator(@NonNull RequestManager requestManager) {
+            this.requestManager = requestManager;
+        }
+
+        @Override
+        public SingleObserver<? super AhangifySearchResult> apply(SingleObserver<? super List<ViewModel>> observer) throws Exception {
+            return new SingleObserver<AhangifySearchResult>() {
+                @Override
+                public void onSubscribe(Disposable d) {
+                    observer.onSubscribe(d);
+                }
+
+                @Override
+                public void onSuccess(AhangifySearchResult ahangifySearchResult) {
+                    if (ahangifySearchResult.songs != null) {
+                        List<Song> songs = Stream.of(ahangifySearchResult.songs.data).map(AhangifyTrack::getSong).collect(Collectors.toList());
+
+                        SongViewClickListener songViewClickListener = new SongViewClickListener(songs);
+                        List<ViewModel> viewModels = Stream.of(songs).limit(onlineMode ? 10:3).map(song -> {
+                            SongView songView = new SongView(song, requestManager);
+                            songView.setClickListener(songViewClickListener);
+                            return  songView;
+                        }).collect(Collectors.toList());
+
+                        if (ahangifySearchResult.songs.last_page > ahangifySearchResult.songs.current_page) {
+                            if (onlineMode) {
+                                loadMoreResults.setListener((position, buttonView, viewHolder) -> {
+                                    SearchView searchView = getView();
+                                    if (searchView != null) {
+                                        searchView.removeItem(loadMoreResults);
+                                        searchView.addLoadingView();
+                                    }
+                                    loadMorePages();
+                                });
+                                viewModels.add(loadMoreResults);
+                            } else {
+                                songsShowAll.setListener((position, buttonView, viewHolder) -> {
+                                    SearchView searchView = getView();
+                                    if (searchView != null) {
+                                        searchView.goToOnlineSearch(query);
+                                    }
+                                });
+                                viewModels.add(songsShowAll);
+                            }
+                        }
+
+                        if (viewModels.size() > 0 && currentPage == 1) {
+                            viewModels.add(0, songsHeader);
+                        }
+
+                        observer.onSuccess(viewModels);
+                    } else {
+                        observer.onSuccess(new ArrayList<>());
+                    }
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    /* pass success on network errors so local files will be visible! */
+                    observer.onSuccess(new ArrayList<>());
+                }
+            };
+        }
     }
 
     private class SongFilterOperator implements SingleOperator<List<ViewModel>, List<Song>> {
@@ -516,26 +629,30 @@ public class SearchPresenter extends Presenter<SearchView> implements
         @Override
         public void onSongOverflowClick(int position, View v, Song song) {
             PopupMenu menu = new PopupMenu(v.getContext(), v);
-            MenuUtils.setupSongMenu(menu, false);
-            menu.setOnMenuItemClickListener(MenuUtils.getSongMenuClickListener(
-                    v.getContext(),
-                    song,
-                    taggerDialog -> {
-                        SearchView searchView = getView();
-                        if (searchView != null) {
-                            if (!ShuttleUtils.isUpgraded()) {
-                                searchView.showUpgradeDialog();
-                            } else {
-                                searchView.showTaggerDialog(taggerDialog);
+            if (song.path != null && song.path.startsWith("online")) {
+                MenuUtils.setupOnlineSongMenu(menu);
+            } else {
+                MenuUtils.setupSongMenu(menu, false);
+                menu.setOnMenuItemClickListener(MenuUtils.getSongMenuClickListener(
+                        v.getContext(),
+                        song,
+                        taggerDialog -> {
+                            SearchView searchView = getView();
+                            if (searchView != null) {
+                                if (!ShuttleUtils.isUpgraded()) {
+                                    searchView.showUpgradeDialog();
+                                } else {
+                                    searchView.showTaggerDialog(taggerDialog);
+                                }
                             }
-                        }
-                    },
-                    deleteDialog -> {
-                        SearchView searchView = getView();
-                        if (searchView != null) {
-                            searchView.showDeleteDialog(deleteDialog);
-                        }
-                    }, null, null, null));
+                        },
+                        deleteDialog -> {
+                            SearchView searchView = getView();
+                            if (searchView != null) {
+                                searchView.showDeleteDialog(deleteDialog);
+                            }
+                        }, null, null, null));
+            }
             menu.show();
         }
 

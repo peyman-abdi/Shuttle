@@ -828,4 +828,12 @@
     <string name="saf_access_required_message">Shuttle requires permission to access these files. Please pick the directory containing your music.</string>
     <string name="saf_show_files_button">Show files</string>
 
+    <string name="ahangify_songs">Ahangify Songs</string>
+
+    <string name="show_all_results">Show all results</string>
+    <string name="show_more_results">Load more results</string>
+
+    <string name="download_now">Download now</string>
+    <string name="download_queue">Download queue</string>
+
 </resources>
