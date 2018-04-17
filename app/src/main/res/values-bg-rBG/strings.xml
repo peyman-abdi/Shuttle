@@ -140,9 +140,9 @@
     <string name="dialog_checkbox_playlist_duplicate_apply_all">Приложи за всички (<xliff:g id="number">%d</xliff:g>)</string>
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
     <string name="dialog_title_playlist_duplicates">Намерени са дублирания</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
     <string name="dialog_button_playlist_duplicate_add">Добави</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <string name="dialog_button_playlist_duplicate_skip">Пропусни</string>
     <!-- Checkbox text 'always add duplicates' -->
     <string name="dialog_checkbox_playlist_duplicate_always_add">Винаги добавяй дублирания</string>
@@ -414,7 +414,7 @@
     <string name="disc_total">Общ брой дискове</string>
     <!-- Track count. i.e "1 of 15" -->
     <string name="track_count"><xliff:g id="track">%1$s</xliff:g> от <xliff:g id="total tracks">%2$s</xliff:g></string>
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Запази</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">Неуспех при редактирането на атрибутите. Ако използвате KitKat и файлът се намира във външната памет, тази функция не може да бъде използвана поради ограниченията за работа с SD карти, наложени от Google. Съжаляваме!</string>
@@ -491,7 +491,7 @@
     <string name="bass_boost_strength">Сила на Басов Усилвател</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Сила на виртуализатора</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">Външен еквалайзер</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Ръчен режим</string>
@@ -541,7 +541,7 @@
     <!-- Sleep timer "30 minutes" -->
     <!-- Sleep timer "1 hour" -->
     <!-- Sleep timer label "Minutes" (limited space here) -->
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Готово</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Задаване на часа</string>
@@ -561,9 +561,9 @@
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">Нов плейлист <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Запазване</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Презаписване</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -687,7 +687,7 @@
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Текстове</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">Не е открит вграден текст на песента</string>

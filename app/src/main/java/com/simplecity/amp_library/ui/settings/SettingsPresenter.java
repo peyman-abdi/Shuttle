@@ -31,6 +31,7 @@ import com.simplecity.amp_library.utils.ColorPalette;
 import com.simplecity.amp_library.utils.SettingsManager;
 import com.simplecity.amp_library.utils.ShuttleUtils;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -317,6 +318,59 @@ public class SettingsPresenter extends PurchasePresenter<SettingsView> {
         SettingsView settingsView = getView();
         if (settingsView != null) {
             settingsView.showSearchLimitDialog(OnlineSearchFragment.getSearchLimitDialog(context, false));
+        }
+    }
+    public void viewMaxConcurrentDownloadsClicked(Context context) {
+        SettingsView settingsView = getView();
+        if (settingsView != null) {
+            List<String> items = Arrays.asList(context.getResources().getStringArray(R.array.pref_download_max_concurrent));
+            int defaultConcurrent = SettingsManager.getInstance().getDownloadMaxConcurrent();
+            settingsView.showMaxConcurrentDownloadsDialog(
+                    new MaterialDialog.Builder(context)
+                            .title(R.string.pref_online_download_max_concurrent_dialog_title)
+                            .items(items)
+                            .itemsCallbackSingleChoice(items.indexOf(String.valueOf(defaultConcurrent)), (dialog, itemView, which, text) -> {
+                                SettingsManager.getInstance().setDownloadMaxConcurrent(Integer.valueOf(items.get(which)));
+                                return false;
+                            })
+                            .build()
+            );
+        }
+    }
+    public void viewDownloadsLocationClicked(Context context) {
+        SettingsView settingsView = getView();
+        if (settingsView != null) {
+            List<String> items = Arrays.asList(context.getResources().getStringArray(R.array.pref_downloads_location));
+            int defaultLocationIndex = SettingsManager.getInstance().getDownloadLocation();
+            settingsView.showDownloadsLocationDialog(
+                    new MaterialDialog.Builder(context)
+                            .title(R.string.pref_online_download_storage_dialog_title)
+                            .items(items)
+                            .itemsCallbackSingleChoice(defaultLocationIndex, (dialog, itemView, which, text) -> {
+                                SettingsManager.getInstance().setDownloadLocation(which);
+                                return false;
+                            })
+                            .build()
+            );
+
+        }
+    }
+
+    public void viewDownloadsQualityClicked(Context context) {
+        SettingsView settingsView = getView();
+        if (settingsView != null) {
+            List<String> items = Arrays.asList(context.getResources().getStringArray(R.array.pref_download_qualities));
+            int defaultConcurrent = SettingsManager.getInstance().getDownloadDefaultQuality();
+            settingsView.showDownloadsQualityDialog(
+                    new MaterialDialog.Builder(context)
+                            .title(R.string.pref_online_download_quality_dialog_title)
+                            .items(items)
+                            .itemsCallbackSingleChoice(defaultConcurrent, (dialog, itemView, which, text) -> {
+                                SettingsManager.getInstance().setDownloadDefaultQuality(which);
+                                return false;
+                            })
+                            .build()
+            );
         }
     }
 }

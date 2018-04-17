@@ -133,8 +133,8 @@ cançons afegides a la cua.</item>
     <!-- Message displayed in dialog when attempting to add duplicates to playlist -->
     <!-- Checkbox text 'apply to all' -->
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <!-- Checkbox text 'always add duplicates' -->
     <!-- ## Widgets ## -->
     <!-- Checkbox text to invert colors of buttons & text -->
@@ -390,7 +390,7 @@ Si està desmarcat, s\'emprarà l\'icona de Shuttle.</string>
     <!-- -->
     <string name="track_number">Pista \#</string>
     <!-- Track count. i.e "1 of 15" -->
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Guardar</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">Hi ha hagut un error en guardar les etiquetes</string>
@@ -467,7 +467,7 @@ carpeta</item>
     <string name="bass_boost_strength">Reforçament de baixos</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Intensitat del virtualitzador</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">Equalitzador extern</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Personalitzat</string>
@@ -517,7 +517,7 @@ carpeta</item>
     <!-- Sleep timer "30 minutes" -->
     <!-- Sleep timer "1 hour" -->
     <!-- Sleep timer label "Minutes" (limited space here) -->
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Fet</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Escull quantes setmanes ha de considerar Shuttle com a \"recent\".</string>
@@ -537,9 +537,9 @@ carpeta</item>
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">Nova llista de reproducció <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Guardar</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Sobreescriure</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -632,7 +632,7 @@ carpeta</item>
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Lletres</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">No s\'han trobat lletres incrustades</string>

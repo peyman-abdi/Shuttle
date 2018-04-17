@@ -16,6 +16,7 @@ import com.simplecity.amp_library.format.PrefixHighlighter;
 import com.simplecity.amp_library.model.Song;
 import com.simplecity.amp_library.ui.adapters.ViewType;
 import com.simplecity.amp_library.ui.views.NonScrollImageButton;
+import com.simplecity.amp_library.ui.views.OverflowButton;
 import com.simplecity.amp_library.ui.views.PlayCountView;
 import com.simplecity.amp_library.utils.PlaceholderProvider;
 import com.simplecity.amp_library.utils.SettingsManager;
@@ -196,6 +197,9 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
         }
 
         holder.overflowButton.setContentDescription(holder.itemView.getResources().getString(R.string.btn_options, song.name));
+        if (holder.overflowButton instanceof OverflowButton) {
+            ((OverflowButton) holder.overflowButton).setDrawableMode(song.onlineTrack != null, song.offline != null);
+        }
 
         if (prefixHighlighter != null) {
             prefixHighlighter.setText(holder.lineOne, prefix);

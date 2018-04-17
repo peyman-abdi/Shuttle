@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.rxbinding2.support.v7.widget.RxSearchView;
 import com.simplecity.amp_library.R;
 import com.simplecity.amp_library.ShuttleApplication;
+import com.simplecity.amp_library.download.DownloadHelper;
 import com.simplecity.amp_library.format.PrefixHighlighter;
 import com.simplecity.amp_library.model.Album;
 import com.simplecity.amp_library.model.AlbumArtist;
@@ -393,5 +394,10 @@ public class SearchFragment extends BaseFragment implements
             };
             searchPresenter.setContextualToolbarHelper(contextualToolbarHelper);
         }
+    }
+
+    @Override
+    public void showDownloadQualitySelectDialog(Song song) {
+        DownloadHelper.getInstance().getSelectQualityDialogAndStart(getContext(), song).show();
     }
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.internal.ForegroundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    xmlns:progressbutton="http://schemas.android.com/apk/res-auto"
+    android:foreground="?attr/list_selector"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingStart="16dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/line_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp"
+            tools:text="Feeling Kind Of Anxious"/>
+
+        <TextView
+            android:id="@+id/line_two"
+            style="?attr/secondaryTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="14sp"
+            tools:text="Franz Ferdinand - Tonight"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line_three"
+        style="?attr/secondaryTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:minEms="3"
+        android:textSize="14sp"
+        tools:text="3:20"/>
+
+
+    <be.appfoundry.progressbutton.ProgressButton
+        android:id="@+id/progress_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        progressbutton:fillColor="@color/md_white_1000"
+        progressbutton:progressColor="@color/md_red_300"
+        progressbutton:strokeWidth="3dp"
+        progressbutton:strokeColor="@color/md_grey_600"
+        progressbutton:indeterminate="true"
+        />
+
+</android.support.design.internal.ForegroundLinearLayout>

@@ -6,6 +6,7 @@ import com.simplecity.amp_library.BuildConfig;
 import com.simplecity.amp_library.R;
 import com.simplecity.amp_library.model.CategoryItem;
 import com.simplecity.amp_library.ui.adapters.ViewType;
+import com.tonyodev.fetch2.Status;
 
 public class SettingsManager extends BaseSettingsManager {
 
@@ -60,12 +61,41 @@ public class SettingsManager extends BaseSettingsManager {
     // Online search
     public static String KEY_PREF_QUICK_SEARCH_LIMIT = "pref_search_quick_limit";
     public static String KEY_PREF_FULL_SEARCH_LIMIT = "pref_search_full_limit";
+    public static String KEY_PREF_DOWNLOAD_MAX_CONCURRENT = "pref_download_max_concurrent";
+    public static String KEY_PREF_DOWNLOAD_LOCATION = "pref_download_storage";
+    public static String KEY_PREF_DOWNLOAD_WIFI_ONLY = "pref_download_wifi_only";
+    public static String KEY_PREF_DOWNLOAD_DEFAULT_QUALITY = "pref_download_default_quality";
 
     // Whether the 'rate' snackbar has been seen during this session
     public boolean hasSeenRateSnackbar = false;
 
     private SettingsManager() {
 
+    }
+
+    public void setDownloadWifiOnly(boolean wifiOnly) {
+        setBool(KEY_PREF_DOWNLOAD_WIFI_ONLY, wifiOnly);
+    }
+    public void setDownloadMaxConcurrent(int maxConcurrent) {
+        setInt(KEY_PREF_DOWNLOAD_MAX_CONCURRENT, maxConcurrent);
+    }
+    public void setDownloadLocation(int downloadLocation) {
+        setInt(KEY_PREF_DOWNLOAD_LOCATION, downloadLocation);
+    }
+    public int getDownloadMaxConcurrent() {
+        return getInt(KEY_PREF_DOWNLOAD_MAX_CONCURRENT, 1);
+    }
+    public int getDownloadLocation() {
+        return getInt(KEY_PREF_DOWNLOAD_LOCATION, 0);
+    }
+    public boolean getDownloadWifiOnly() {
+        return getBool(KEY_PREF_DOWNLOAD_WIFI_ONLY, false);
+    }
+    public int getDownloadDefaultQuality() {
+        return getInt(KEY_PREF_DOWNLOAD_DEFAULT_QUALITY, 0);
+    }
+    public void setDownloadDefaultQuality(int quality) {
+        setInt(KEY_PREF_DOWNLOAD_DEFAULT_QUALITY, quality);
     }
 
     public int getQuickSearchLimit() {
@@ -79,6 +109,51 @@ public class SettingsManager extends BaseSettingsManager {
     }
     public void setFullSearchLimit(int limit) {
         setInt(KEY_PREF_FULL_SEARCH_LIMIT, limit);
+    }
+
+    public static final String KEY_DOWNLOADS_SHOW_PREFIX = "pref_downloads_show_";
+    public boolean getDownloadsStatusVisibility(Status status) {
+        switch (status) {
+            case COMPLETED:
+                return getBool(KEY_DOWNLOADS_SHOW_PREFIX + "completed", true);
+            case DELETED:
+            case REMOVED:
+            case CANCELLED:
+            case NONE:
+            case FAILED:
+                return getBool(KEY_DOWNLOADS_SHOW_PREFIX + "stopped", true);
+            case PAUSED:
+                return getBool(KEY_DOWNLOADS_SHOW_PREFIX + "paused", true);
+            case DOWNLOADING:
+                return getBool(KEY_DOWNLOADS_SHOW_PREFIX + "downloading", true);
+            case QUEUED:
+                return getBool(KEY_DOWNLOADS_SHOW_PREFIX + "queued", true);
+        }
+        return false;
+    }
+    public void setDownloadsStatusVisibility(Status status, boolean visible) {
+        switch (status) {
+            case COMPLETED:
+                setBool(KEY_DOWNLOADS_SHOW_PREFIX + "completed", visible);
+                break;
+            case DELETED:
+            case REMOVED:
+            case CANCELLED:
+            case NONE:
+            case FAILED:
+                setBool(KEY_DOWNLOADS_SHOW_PREFIX + "stopped", visible);
+                break;
+            case PAUSED:
+                setBool(KEY_DOWNLOADS_SHOW_PREFIX + "paused", visible);
+                break;
+            case DOWNLOADING:
+                setBool(KEY_DOWNLOADS_SHOW_PREFIX + "downloading", visible);
+                break;
+            case QUEUED:
+                setBool(KEY_DOWNLOADS_SHOW_PREFIX + "queued", visible);
+                break;
+        }
+
     }
 
     public static final String KEY_SHOW_LOCKSCREEN_ARTWORK = "pref_show_lockscreen_artwork";

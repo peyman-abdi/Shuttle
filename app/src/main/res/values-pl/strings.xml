@@ -148,9 +148,9 @@
     <string name="dialog_checkbox_playlist_duplicate_apply_all">Zastosuj do wszystkich (<xliff:g id="number">%d</xliff:g>)</string>
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
     <string name="dialog_title_playlist_duplicates">Odnaleziono duplikaty</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
     <string name="dialog_button_playlist_duplicate_add">Dodaj</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <string name="dialog_button_playlist_duplicate_skip">Pomiń</string>
     <!-- Checkbox text 'always add duplicates' -->
     <string name="dialog_checkbox_playlist_duplicate_always_add">Zawsze dodawaj duplikaty</string>
@@ -437,7 +437,7 @@ Po wyłączeniu, jako obraz zastępczy będzie używana ikona programu.</string>
     <string name="disc_total">Liczba płyt</string>
     <!-- Track count. i.e "1 of 15" -->
     <string name="track_count"><xliff:g id="track">%1$s</xliff:g> z <xliff:g id="total tracks">%2$s</xliff:g></string>
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Zapisz</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">Wystąpił błąd modyfikowania znaczników.</string>
@@ -522,7 +522,7 @@ katalog</item>
     <string name="bass_boost_strength">Siła podbicia basów</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Siła wirtualizacji</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">Zewnętrzny korektor</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Własne</string>
@@ -583,7 +583,7 @@ katalog</item>
     <string name="sleep_timer_1_hour">1 godzina</string>
     <!-- Sleep timer label "Minutes" (limited space here) -->
     <string name="sleep_timer_label_minutes">Min</string>
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Gotowe</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Proszę ustalić liczbę tygodni analizowanych w poszukiwaniu ostatnio odtwarzanej muzyki.</string>
@@ -603,9 +603,9 @@ katalog</item>
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">Nowa lista odtwarzania <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Zapisz</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Zastąp</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -740,7 +740,7 @@ katalog</item>
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Teksty</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">Nie odnaleziono dołączonego tekstu.</string>

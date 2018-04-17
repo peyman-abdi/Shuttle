@@ -138,8 +138,8 @@
     <!-- Message displayed in dialog when attempting to add duplicates to playlist -->
     <!-- Checkbox text 'apply to all' -->
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <!-- Checkbox text 'always add duplicates' -->
     <!-- ## Widgets ## -->
     <!-- Checkbox text to invert colors of buttons & text -->
@@ -396,7 +396,7 @@
     <!-- -->
     <string name="track_number">Piesa \#</string>
     <!-- Track count. i.e "1 of 15" -->
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Salvează</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">A apărut o eroare la editarea tag-urilor.</string>
@@ -475,7 +475,7 @@
     <string name="bass_boost_strength">Puterea bass boost</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Puterea Virtualizer</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">EQ Extern</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Personalizat</string>
@@ -525,7 +525,7 @@
     <!-- Sleep timer "30 minutes" -->
     <!-- Sleep timer "1 hour" -->
     <!-- Sleep timer label "Minutes" (limited space here) -->
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Gata</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Setează câte săptămâni ar trebui să considere Shuttle în căutarea muzicii „recente”.</string>
@@ -545,9 +545,9 @@
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">Playlist nou <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Salvează</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Suprascrie</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -642,7 +642,7 @@
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Versuri</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">Nu s-au găsit versuri incorporate</string>

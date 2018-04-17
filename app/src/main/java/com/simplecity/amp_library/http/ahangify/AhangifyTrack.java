@@ -23,6 +23,9 @@ public class AhangifyTrack {
     @SerializedName("album")
     public AhangifyAlbum album;
 
+    @SerializedName("files")
+    public AhangifyFile[] files;
+
     @SerializedName("duration")
     public long duration;
 
@@ -46,8 +49,11 @@ public class AhangifyTrack {
         song.dateAdded = (int) (System.currentTimeMillis() / 1000);
         song.bookMark = 0;
         song.isPodcast = false;
+        song.playCount = 10;
 
         song.path = "online";
+
+        song.onlineTrack = this;
 
         return song;
     }

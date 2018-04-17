@@ -243,6 +243,8 @@ dependencies {
     implementation project(Dependencies.Projects.ccl)
     implementation project(Dependencies.Projects.glidePalette)
     implementation project(Dependencies.Projects.aesthetic)
+    implementation project(Dependencies.Projects.fetch)
+    implementation project(Dependencies.Projects.fetchDownloaders)
 
     // Rx
     implementation Dependencies.Rx.rxAndroid
@@ -267,6 +269,8 @@ dependencies {
     implementation Dependencies.materialDialogCommons
     implementation Dependencies.expandableRecyclerView
     implementation Dependencies.billing
+
+    implementation Dependencies.progressButton
 
     implementation Dependencies.butterknife
     annotationProcessor Dependencies.butterknifeAnnotationProcessor

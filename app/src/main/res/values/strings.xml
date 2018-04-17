@@ -162,9 +162,9 @@
     <string name="dialog_checkbox_playlist_duplicate_apply_all">Apply to all (<xliff:g id="number">%d</xliff:g>)</string>
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
     <string name="dialog_title_playlist_duplicates">Duplicates Found</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
     <string name="dialog_button_playlist_duplicate_add">Add</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <string name="dialog_button_playlist_duplicate_skip">Skip</string>
     <!-- Checkbox text 'always add duplicates' -->
     <string name="dialog_checkbox_playlist_duplicate_always_add">Always add duplicates</string>
@@ -472,7 +472,7 @@
     <!-- Track count. i.e "1 of 15" -->
     <string name="track_count"><xliff:g id="track">%1$s</xliff:g> of <xliff:g id="total tracks">%2$s</xliff:g></string>
 
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Save</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">An error occurred editing tags. If the file is stored on an SD Card, Shuttle might not have permission to access it.</string>
@@ -558,7 +558,7 @@
     <string name="bass_boost_strength">Bass Boost Strength</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Virtualizer Strength</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">External EQ</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Custom</string>
@@ -629,7 +629,7 @@
     <!-- Sleep timer label "Minutes" (limited space here) -->
     <string name="sleep_timer_label_minutes">Min</string>
 
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Done</string>
 
     <!-- Title of time span picker -->
@@ -653,9 +653,9 @@
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">New playlist <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Save</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Overwrite</string>
 
     <!-- ## Various plurals ## -->
@@ -804,7 +804,7 @@
 
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Lyrics</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">No embedded lyrics found.</string>
@@ -839,6 +839,35 @@
     <string name="download_now">Download now</string>
     <!-- Download queue button -->
     <string name="download_queue">Download queue</string>
+    <!-- Downloads history -->
+    <string name="downloads_history">Downloads</string>
+    <string name="show_downloads_completed">Completed</string>
+    <string name="show_downloads_queued">Queued</string>
+    <string name="show_downloads_downloading">Downloading</string>
+    <string name="show_downloads_stopped">Stopped</string>
+    <string name="show_downloads_paused">Paused</string>
+    <string name="downloads_filter">Filter</string>
+    <string name="download_status_stopped">Stopped</string>
+    <string name="download_status_error">Failed</string>
+    <string name="download_status_queued">Queued</string>
+    <string name="download_status_completed">Completed</string>
+    <string name="download_status_paused">Paused</string>
+    <string name="download_status_downloading">Downloading</string>
+    <string name="now_downloads_found">No downloads found</string>
+    <string name="download_dialog_already_downloaded">This file is already downloaded</string>
+    <string name="download_dialog_restart_download">Download again</string>
+    <string name="download_dialog_remove">Delete file</string>
+    <string name="download_common_title">Download <xliff:g id="id">%s</xliff:g></string>
+    <string name="download_quality_dialog_title">Select Download Quality</string>
+    <!-- Download messages -->
+    <string name="download_queued_message">Queued download of song <xliff:g id="name">%s</xliff:g></string>
+    <string name="download_completed_message">Completed downloading of song <xliff:g id="name">%s</xliff:g></string>
+    <string name="download_resumed_message">Resuming download of song <xliff:g id="name">%s</xliff:g></string>
+    <string name="download_paused_message">Paused downloading of song <xliff:g id="name">%s</xliff:g></string>
+    <string name="download_removed_message">Removed download for song <xliff:g id="name">%s</xliff:g></string>
+    <string name="download_deleted_message">Deleted downloaded song <xliff:g id="name">%s</xliff:g></string>
+    <string name="download_canceled_message">Canceled download for song <xliff:g id="name">%s</xliff:g></string>
+    <string name="download_failed_message">Failed downloading of song <xliff:g id="name">%s</xliff:g> with error: <xliff:g id="message">%s</xliff:g></string>
 
     <!-- Preference: Online -->
     <string name="pref_title_online">Online</string>
@@ -848,5 +877,27 @@
     <string name="pref_online_search_full_limit">Full Search Limit</string>
     <string name="pref_online_search_full_limit_summery">How many items to load when searching in online titles only</string>
     <string name="pref_online_search_limit_dialog_title">Search Records Limit</string>
+
+    <string name="pref_online_download">Downloads</string>
+    <string name="pref_online_download_max_concurrent">Max Concurrent Downloads</string>
+    <string name="pref_online_download_max_concurrent_dialog_title">Max Concurrent Downloads</string>
+    <string name="pref_online_download_max_concurrent_summery">How many files to download simultaneously</string>
+    <string name="pref_online_download_wifi_only">Wi-Fi Only</string>
+    <string name="pref_online_download_wifi_only_summery">Download songs via Wi-Fi only</string>
+    <string name="pref_online_download_storage">Storage</string>
+    <string name="pref_online_download_storage_dialog_title">Storage Location</string>
+    <string name="pref_online_download_storage_summery">Select downloaded files storage location</string>
+
+    <string name="download_storage_internal_music">Music Folder</string>
+    <string name="download_storage_internal_downloads">Downloads Folder</string>
+    <string name="download_storage_external_music">External Storage</string>
+
+    <string name="pref_online_download_quality">Download File Quality</string>
+    <string name="pref_online_download_quality_summery">Select download files quality when more than 1 qualities are available</string>
+    <string name="pref_online_download_quality_dialog_title">Default Download Quality</string>
+    <string name="pref_online_download_quality_ask">Ask on each download</string>
+    <string name="pref_online_download_quality_best">Best available quality</string>
+    <string name="pref_online_download_quality_smallest">Smallest available file</string>
+    <string name="pref_online_download_quality_medium">Medium quality</string>
 
 </resources>

@@ -1,15 +1,23 @@
 package com.simplecity.amp_library.http;
 
 
-import android.util.Log;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.simplecity.amp_library.BuildConfig;
+import com.simplecity.amp_library.ShuttleApplication;
+import com.simplecity.amp_library.http.ahangify.AhangifyFile;
 import com.simplecity.amp_library.http.ahangify.AhangifyService;
+import com.simplecity.amp_library.http.ahangify.HttpAhangifyRetryInterceptor;
+import com.simplecity.amp_library.http.ahangify.HttpAhangifySecurityInterceptor;
 import com.simplecity.amp_library.http.itunes.ItunesService;
 import com.simplecity.amp_library.http.lastfm.LastFmService;
+import com.simplecity.amp_library.model.Song;
+import com.simplecity.amp_library.utils.SettingsManager;
+import com.tonyodev.fetch2.Fetch;
+import com.tonyodev.fetch2.NetworkType;
+import com.tonyodev.fetch2downloaders.OkHttpDownloader;
 
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,6 +29,8 @@ public class HttpClient {
     private static final String URL_LAST_FM = "https://ws.audioscrobbler.com/2.0/";
     private static final String URL_ITUNES = "https://itunes.apple.com/search/";
     private static final String URL_AHANGIFY = "http://10.0.2.2:1022";
+    private static final String AHANGIFY_DOWNLOAD_URL_PREFIX = "/api/download/";
+    public static final int    AHANGIFY_WAIT_FOR_FILE_DEFAULT = 15;
 
     private static HttpClient sInstance;
 
@@ -32,6 +42,10 @@ public class HttpClient {
 
     public AhangifyService  ahangifyService;
 
+    public Fetch    downloaderService;
+
+    public Gson     gson;
+
     public static final String TAG_ARTWORK = "artwork";
 
     public static synchronized HttpClient getInstance() {
@@ -42,18 +56,11 @@ public class HttpClient {
     }
 
     private HttpClient() {
+        gson = new GsonBuilder().create();
 
         okHttpClient = new OkHttpClient.Builder()
-//                .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("192.168.0.3", 8888)))
-                .addInterceptor(chain -> {
-                    Request request = chain.request();
-                    Response response = chain.proceed(request);
-                    if (request.url().url().toString().contains(URL_AHANGIFY)) {
-                        Log.d(TAG, "AHANGIFY");
-                        Log.d(TAG, response.body().toString());
-                    }
-                    return  response;
-                })
+                .addInterceptor(new HttpAhangifySecurityInterceptor())
+                .addInterceptor(new HttpAhangifyRetryInterceptor())
                 .build();
 
         Retrofit lastFmRestAdapter = new Retrofit.Builder()
@@ -75,8 +82,30 @@ public class HttpClient {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-
                 .build();
         ahangifyService = ahangifyRestAdapter.create(AhangifyService.class);
+
+        downloaderService = new Fetch.Builder(ShuttleApplication.getInstance().getApplicationContext(), "Downloader")
+                .setDownloadConcurrentLimit(SettingsManager.getInstance().getDownloadMaxConcurrent())
+                .setGlobalNetworkType(SettingsManager.getInstance().getDownloadWifiOnly() ? NetworkType.WIFI_ONLY:NetworkType.ALL)
+                .setDownloader(new OkHttpDownloader(okHttpClient))
+                .enableLogging(BuildConfig.DEBUG)
+                .enableRetryOnNetworkGain(true)
+                .build();
+    }
+
+    public static String getAhangifyFileURL(Song song, AhangifyFile track) {
+        if (track == null) {
+            return URL_AHANGIFY + AHANGIFY_DOWNLOAD_URL_PREFIX + song.id;
+        } else {
+            //@todo: change to a real file base url
+            return URL_AHANGIFY + AHANGIFY_DOWNLOAD_URL_PREFIX + song.id;
+        }
+    }
+    public static boolean isAhangifyFileUrl(String url) {
+        return url.contains(AHANGIFY_DOWNLOAD_URL_PREFIX);
+    }
+    public static boolean isAhangifyRequest(String url) {
+        return url.contains(HttpClient.URL_AHANGIFY);
     }
 }

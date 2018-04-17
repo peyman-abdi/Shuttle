@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.cantrowitz.rxbroadcast.RxBroadcast;
 import com.simplecity.amp_library.R;
 import com.simplecity.amp_library.ShuttleApplication;
+import com.simplecity.amp_library.download.DownloadsFragment;
 import com.simplecity.amp_library.model.Album;
 import com.simplecity.amp_library.model.AlbumArtist;
 import com.simplecity.amp_library.model.Genre;
@@ -131,6 +132,9 @@ public class MainController extends BaseNavigationController implements BackPres
                             break;
                         case NavigationEventRelay.NavigationEvent.Type.FOLDERS_SELECTED:
                             delayHandler.postDelayed(() -> pushViewController(FolderFragment.newInstance(getString(R.string.folders_title), false), "FolderFragment"), 250);
+                            break;
+                        case NavigationEventRelay.NavigationEvent.Type.DOWNLOADS_SELECTED:
+                            delayHandler.postDelayed(() -> pushViewController(DownloadsFragment.newInstance(), "Downloads Fragment"), 250);
                             break;
                         case NavigationEventRelay.NavigationEvent.Type.SLEEP_TIMER_SELECTED:
                             UnsafeAction showToast = () -> Toast.makeText(getContext(), R.string.sleep_timer_started, Toast.LENGTH_SHORT).show();

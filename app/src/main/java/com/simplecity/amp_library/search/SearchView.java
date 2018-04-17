@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.simplecity.amp_library.model.Album;
 import com.simplecity.amp_library.model.AlbumArtist;
+import com.simplecity.amp_library.model.Song;
 import com.simplecity.amp_library.tagger.TaggerDialog;
 import com.simplecity.amp_library.ui.dialog.DeleteDialog;
 import com.simplecityapps.recycler_adapter.model.ViewModel;
@@ -47,4 +48,6 @@ public interface SearchView {
     void goToOnlineSearch(String query);
 
     void showUpgradeDialog();
+
+    void showDownloadQualitySelectDialog(Song song);
 }

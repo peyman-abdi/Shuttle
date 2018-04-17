@@ -37,4 +37,12 @@
         <item>15</item>
     </string-array>
 
+    <!-- Do not translate -->
+    <string-array name="pref_download_max_concurrent">
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+    </string-array>
+
 </resources>

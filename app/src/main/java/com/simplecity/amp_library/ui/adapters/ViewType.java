@@ -56,5 +56,6 @@ public @interface ViewType {
 
     int SHUFFLE_ALBUMS = 34;
 
-    int Button = 35;
+    int BUTTON = 35;
+    int DOWNLOAD_INFO = 36;
 }

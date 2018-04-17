@@ -144,9 +144,9 @@
     <string name="dialog_checkbox_playlist_duplicate_apply_all">Toepassen op alle (<xliff:g id="number">%d</xliff:g>)</string>
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
     <string name="dialog_title_playlist_duplicates">Dubbelingen gevonden</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
     <string name="dialog_button_playlist_duplicate_add">Toevoegen</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <string name="dialog_button_playlist_duplicate_skip">Overslaan</string>
     <!-- Checkbox text 'always add duplicates' -->
     <string name="dialog_checkbox_playlist_duplicate_always_add">Altijd dubbelingen toevoegen</string>
@@ -433,7 +433,7 @@ Indien uitgeschakeld wordt het Shuttle-icoon als plaatshouder gebruikt</string>
     <string name="disc_total">Totaal aantal CD\'s</string>
     <!-- Track count. i.e "1 of 15" -->
     <string name="track_count"><xliff:g id="track">%1$s</xliff:g> van de <xliff:g id="total tracks">%2$s</xliff:g></string>
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Opslaan</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">Er is een fout opgetreden bij het bewerken van tags.</string>
@@ -513,7 +513,7 @@ map "</item>
     <string name="bass_boost_strength">Bass Boost-sterkte</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Sterkte Virtualizer</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">Externe EQ</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Aangepast</string>
@@ -574,7 +574,7 @@ map "</item>
     <string name="sleep_timer_1_hour">1 uur</string>
     <!-- Sleep timer label "Minutes" (limited space here) -->
     <string name="sleep_timer_label_minutes">Min</string>
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Klaar</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Kiezen hoeveel weken terug Shuttle moet zoeken voor \'recente\' muziek.</string>
@@ -594,9 +594,9 @@ map "</item>
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">Nieuwe afspeellijst <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Opslaan</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Overschrijven</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -727,7 +727,7 @@ map "</item>
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Songteksten</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">Geen ingesloten songteksten gevonden.</string>

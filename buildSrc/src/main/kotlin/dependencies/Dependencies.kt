@@ -24,6 +24,7 @@ object Dependencies {
         const val daggerAnnotationProcessor = "2.14.1"
         const val expandableRecyclerView = "3.0.0-RC1"
         const val billing = "1.0"
+        const val progressButton = "0.9.3"
     }
 
     // Kotlin
@@ -72,6 +73,19 @@ object Dependencies {
     // In app purchases
     const val billing = "com.android.billingclient:billing:${Versions.billing}"
 
+    const val progressButton = "be.appfoundry.progressbuttonlibrary:progressbutton:${Versions.progressButton}"
+
+    // Download management
+
+    object DownloadManagement {
+        object Versions {
+            const val manager = "2.0.0-RC13"
+            const val okhttp = "2.0.0-RC13"
+        }
+
+        const val manager = "com.tonyodev.fetch2:fetch2:${Versions.manager}"
+        const val okhttp = "com.tonyodev.fetch2downloaders:fetch2downloaders:${Versions.okhttp}"
+    }
 
     object Plugins {
 
@@ -242,6 +256,10 @@ object Dependencies {
 
         // Aesthetic - Theming Engine
         val aesthetic = ":libraries:aesthetic"
+
+        // Fetch - Download Manager
+        val fetch = ":libraries:fetch2"
+        val fetchDownloaders = ":libraries:fetch2downloaders"
     }
 
     object BuildPlugins {

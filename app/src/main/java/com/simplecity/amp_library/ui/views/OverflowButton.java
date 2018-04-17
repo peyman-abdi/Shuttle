@@ -20,8 +20,23 @@ public class OverflowButton extends NonScrollImageButton {
     private Disposable aestheticDisposable;
 
     public Drawable drawable;
+    public Drawable offlineDrawable;
+    public Drawable onlineDrawable;
+    public Drawable onlineDownloadedDrawable;
 
     private boolean dark = false;
+
+    public void setDrawableMode(boolean online, boolean downloaded) {
+        if (online) {
+            if (downloaded) {
+                drawable = onlineDownloadedDrawable;
+            } else {
+                drawable = onlineDrawable;
+            }
+        } else {
+            drawable = offlineDrawable;
+        }
+    }
 
     public OverflowButton(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -31,7 +46,11 @@ public class OverflowButton extends NonScrollImageButton {
             dark = typedArray.getBoolean(R.styleable.OverflowButton_isDark, false);
         }
 
-        drawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_overflow_20dp)).mutate();
+        offlineDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_overflow_20dp)).mutate();
+        onlineDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_download_24dp)).mutate();
+        onlineDownloadedDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_close_24dp)).mutate();
+
+        drawable = offlineDrawable;
     }
 
     @Override

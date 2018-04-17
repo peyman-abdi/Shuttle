@@ -405,6 +405,30 @@ public class SettingsParentFragment extends BaseNavigationController implements
                     return true;
                 });
             }
+                // Max Concurrent downloads
+            Preference maxConcurrent = findPreference(SettingsManager.KEY_PREF_DOWNLOAD_MAX_CONCURRENT);
+            if (maxConcurrent != null) {
+                maxConcurrent.setOnPreferenceClickListener(preference -> {
+                    settingsPresenter.viewMaxConcurrentDownloadsClicked(getContext());
+                    return true;
+                });
+            }
+                // Download location
+            Preference downloadLocation = findPreference(SettingsManager.KEY_PREF_DOWNLOAD_LOCATION);
+            if (downloadLocation != null) {
+                downloadLocation.setOnPreferenceClickListener(preference -> {
+                    settingsPresenter.viewDownloadsLocationClicked(getContext());
+                    return true;
+                });
+            }
+
+            Preference downloadQuality = findPreference(SettingsManager.KEY_PREF_DOWNLOAD_DEFAULT_QUALITY);
+            if (downloadQuality != null) {
+                downloadQuality.setOnPreferenceClickListener(preference -> {
+                    settingsPresenter.viewDownloadsQualityClicked(getContext());
+                    return true;
+                });
+            }
         }
 
         @Override
@@ -614,5 +638,21 @@ public class SettingsParentFragment extends BaseNavigationController implements
         public void showSearchLimitDialog(MaterialDialog dialog) {
             dialog.show();
         }
+
+        @Override
+        public void showMaxConcurrentDownloadsDialog(MaterialDialog dialog) {
+            dialog.show();
+        }
+
+        @Override
+        public void showDownloadsLocationDialog(MaterialDialog dialog) {
+            dialog.show();
+        }
+
+        @Override
+        public void showDownloadsQualityDialog(MaterialDialog dialog) {
+            dialog.show();
+        }
+
     }
 }

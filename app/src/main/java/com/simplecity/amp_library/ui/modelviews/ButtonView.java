@@ -10,7 +10,7 @@ import com.simplecityapps.recycler_adapter.model.BaseViewModel;
 import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 
 import static com.simplecity.amp_library.R.layout.list_item_button;
-import static com.simplecity.amp_library.ui.adapters.ViewType.Button;
+import static com.simplecity.amp_library.ui.adapters.ViewType.BUTTON;
 
 /**
  * Created by peyman on 4/8/18.
@@ -36,7 +36,7 @@ public class ButtonView extends BaseViewModel<ButtonView.ViewHolder> {
 
     @Override
     public int getViewType() {
-        return Button;
+        return BUTTON;
     }
 
     @Override

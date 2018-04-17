@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <!-- Used to read mediastore db, caching artwork etc. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- ## End 'Special' permissions ##-->
 
     <application

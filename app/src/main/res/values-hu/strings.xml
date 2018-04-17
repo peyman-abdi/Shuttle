@@ -142,9 +142,9 @@
     <string name="dialog_message_playlist_add_duplicate"><xliff:g id="artist">%1$s</xliff:g> - <xliff:g id="song">%2$s</xliff:g> már szerepel a listában. Hozzáadja még egyszer?</string>
     <!-- Checkbox text 'apply to all' -->
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
     <string name="dialog_button_playlist_duplicate_add">Hozzáadás</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <string name="dialog_button_playlist_duplicate_skip">Kihagyás</string>
     <!-- Checkbox text 'always add duplicates' -->
     <!-- ## Widgets ## -->
@@ -412,7 +412,7 @@ segítségével
     <string name="disc_total">Összes lemez</string>
     <!-- Track count. i.e "1 of 15" -->
     <string name="track_count"><xliff:g id="track">%1$s</xliff:g>. / <xliff:g id="total tracks">%2$s</xliff:g></string>
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Mentés</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">Hiba történt a címkék szerkesztése közben.</string>
@@ -496,7 +496,7 @@ segítségével
     <string name="bass_boost_strength">Basszus kiemelés erőssége</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Virtualizálás erőssége</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">Külső EQ</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Egyéni</string>
@@ -547,7 +547,7 @@ segítségével
     <!-- Sleep timer "30 minutes" -->
     <!-- Sleep timer "1 hour" -->
     <!-- Sleep timer label "Minutes" (limited space here) -->
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Kész</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Állítsa be, hogy a Shuttle hány héttel ezelőttig jegyezze meg a Nemrég játszott dalokat.</string>
@@ -567,9 +567,9 @@ segítségével
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">Új lejátszási lista <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Mentés</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Felülírás</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -693,7 +693,7 @@ segítségével
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Dalszöveg</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">Nincsen beágyazott dalszöveg</string>

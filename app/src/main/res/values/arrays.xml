@@ -39,4 +39,17 @@
         <item>@string/sleep_timer_set_minutes</item>
     </string-array>
 
+    <string-array name="pref_downloads_location">
+        <item>@string/download_storage_internal_music</item>
+        <item>@string/download_storage_internal_downloads</item>
+        <item>@string/download_storage_external_music</item>
+    </string-array>
+
+    <string-array name="pref_download_qualities">
+        <item>@string/pref_online_download_quality_ask</item>
+        <item>@string/pref_online_download_quality_best</item>
+        <item>@string/pref_online_download_quality_medium</item>
+        <item>@string/pref_online_download_quality_smallest</item>
+    </string-array>
+
 </resources>

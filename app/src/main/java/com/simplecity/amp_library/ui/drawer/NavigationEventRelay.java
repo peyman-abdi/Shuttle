@@ -23,6 +23,7 @@ public class NavigationEventRelay {
             return ShuttleUtils.isUpgraded();
         }
     };
+    static NavigationEvent downloadsSelectedEvent = new NavigationEvent(NavigationEvent.Type.DOWNLOADS_SELECTED);
 
     private PublishRelay<NavigationEvent> relay = PublishRelay.create();
 
@@ -53,6 +54,7 @@ public class NavigationEventRelay {
             int GO_TO_ARTIST = 7;
             int GO_TO_ALBUM = 8;
             int GO_TO_GENRE = 9;
+            int DOWNLOADS_SELECTED = 10;
         }
 
         @Type

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/downloads_details"
+        android:icon="@drawable/ic_sort_24dp"
+        android:title="@string/downloads_filter"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/show_completed"
+                android:checkable="true"
+                android:checked="true"
+                android:title="@string/show_downloads_completed"/>
+            <item
+                android:id="@+id/show_downloading"
+                android:checkable="true"
+                android:checked="true"
+                android:title="@string/show_downloads_downloading"/>
+            <item
+                android:id="@+id/show_paused"
+                android:checkable="true"
+                android:checked="true"
+                android:title="@string/show_downloads_paused"/>
+            <item
+                android:id="@+id/show_queued"
+                android:checkable="true"
+                android:checked="true"
+                android:title="@string/show_downloads_queued"/>
+            <item
+                android:id="@+id/show_stopped"
+                android:checkable="true"
+                android:checked="true"
+                android:title="@string/show_downloads_stopped"/>
+        </menu>
+
+    </item>
+</menu>

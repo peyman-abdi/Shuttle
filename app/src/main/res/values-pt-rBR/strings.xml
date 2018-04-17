@@ -146,9 +146,9 @@ músicas adicionadas à fila.</item>
     <string name="dialog_checkbox_playlist_duplicate_apply_all">Aplicar a todos (<xliff:g id="number">%d</xliff:g>)</string>
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
     <string name="dialog_title_playlist_duplicates">Duplicatas encontradas</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
     <string name="dialog_button_playlist_duplicate_add">Adicionar</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <string name="dialog_button_playlist_duplicate_skip">Pular</string>
     <!-- Checkbox text 'always add duplicates' -->
     <string name="dialog_checkbox_playlist_duplicate_always_add">Sempre adicionar duplicatas</string>
@@ -435,7 +435,7 @@ Se estiver desmarcado, o ícone do Shuttle será usado como uma capa</string>
     <string name="disc_total">Total de discos</string>
     <!-- Track count. i.e "1 of 15" -->
     <string name="track_count"><xliff:g id="track">%1$s</xliff:g> de <xliff:g id="total tracks">%2$s</xliff:g></string>
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Salvar</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">Um erro ocorreu ao editar as tags.</string>
@@ -517,7 +517,7 @@ pastas</item>
     <string name="bass_boost_strength">Intensidade do reforço de graves</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Força do virtualizador</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">EQ externo</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Personalizado</string>
@@ -578,7 +578,7 @@ pastas</item>
     <string name="sleep_timer_1_hour">1 hora</string>
     <!-- Sleep timer label "Minutes" (limited space here) -->
     <string name="sleep_timer_label_minutes">Min</string>
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Pronto</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Escolha quantas por semanas no passado o Shuttle deve buscar por músicas \'recentes\'.</string>
@@ -598,9 +598,9 @@ pastas</item>
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">Nova playlist <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Salvar</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Substituir</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -731,7 +731,7 @@ pastas</item>
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Letras</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">Nenhuma letra embutida encontrada.</string>

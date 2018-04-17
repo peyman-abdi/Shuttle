@@ -77,8 +77,8 @@
     <!-- Message displayed in dialog when attempting to add duplicates to playlist -->
     <!-- Checkbox text 'apply to all' -->
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <!-- Checkbox text 'always add duplicates' -->
     <!-- ## Widgets ## -->
     <!-- Checkbox text to invert colors of buttons & text -->
@@ -219,7 +219,7 @@
     <!-- Tag editor saving tags -->
     <!-- -->
     <!-- Track count. i.e "1 of 15" -->
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">Couldn\'t edit tags. If you\'re using Kitkat, and the file is stored on the SD card, tag editing will no longer work. This is due to changes to the access permissions of the SD card enforced by Google. Sorry!</string>
     <!-- ## Folder browsing ## -->
@@ -258,7 +258,7 @@
     <!-- Displayed at the top of the preset selection screen in the equalizer -->
     <!-- Bass boost strength -->
     <!-- Virtualizer strength -->
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <!-- Equalizer 'custom' preset -->
     <!-- ## Empty list messages ## -->
     <!-- -->
@@ -280,7 +280,7 @@
     <!-- Sleep timer "30 minutes" -->
     <!-- Sleep timer "1 hour" -->
     <!-- Sleep timer label "Minutes" (limited space here) -->
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <!-- Title of time span picker -->
     <!-- ## Notification bar text ## -->
     <!-- Message in notification bar when downloading -->
@@ -292,8 +292,8 @@
     <!-- label underneath icon used to indicate sd card is mounted to your computer via USB -->
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
-    <!-- Button name when saving a playlist -->
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
     <!-- used in various places to indicate there is some number other than one songs for a given artist or album. -->
@@ -344,7 +344,7 @@
     <!-- Changelog -->
     <!-- Lyrics -->
     <!-- QuickLyric button -->
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <!-- Shown when there are no lyrics -->
     <!-- QuickLyric info dialog message-->
     <!-- "Playlist" Shortcut label. Max 10 characters.-->

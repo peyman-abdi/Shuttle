@@ -11,8 +11,10 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.RequestManager;
 import com.simplecity.amp_library.R;
 import com.simplecity.amp_library.ShuttleApplication;
+import com.simplecity.amp_library.download.DownloadHelper;
 import com.simplecity.amp_library.format.PrefixHighlighter;
 import com.simplecity.amp_library.http.HttpClient;
+import com.simplecity.amp_library.http.ahangify.AhangifyFile;
 import com.simplecity.amp_library.http.ahangify.AhangifySearchQuery;
 import com.simplecity.amp_library.http.ahangify.AhangifySearchResult;
 import com.simplecity.amp_library.http.ahangify.AhangifyTrack;
@@ -37,6 +39,7 @@ import com.simplecity.amp_library.utils.SettingsManager;
 import com.simplecity.amp_library.utils.ShuttleUtils;
 import com.simplecity.amp_library.utils.StringUtils;
 import com.simplecityapps.recycler_adapter.model.ViewModel;
+import com.tonyodev.fetch2.Download;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,6 +51,7 @@ import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.SingleOperator;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -151,7 +155,7 @@ public class SearchPresenter extends Presenter<SearchView> implements
             boolean searchOnline = query.length() > 3 || onlineMode;
             Single<List<ViewModel>> searchObservable = searchOnline ? HttpClient.getInstance().ahangifyService
                     .getSearchResult(this.currentPage, SettingsManager.getInstance().getQuickSearchLimit(), new AhangifySearchQuery(query))
-                    .subscribeOn(Schedulers.single())
+                    .subscribeOn(Schedulers.computation())
                     .lift(new SearchAPIFilterOperator(requestManager)) : Single.just(Collections.emptyList());
 
             performSearchSubscription = Single.zip(
@@ -186,7 +190,7 @@ public class SearchPresenter extends Presenter<SearchView> implements
     private void loadMorePages() {
         Single<List<ViewModel>> searchObservable = HttpClient.getInstance().ahangifyService
                 .getSearchResult(++this.currentPage, SettingsManager.getInstance().getFullSearchLimit(), new AhangifySearchQuery(query))
-                .subscribeOn(Schedulers.single())
+                .subscribeOn(Schedulers.computation())
                 .lift(new SearchAPIFilterOperator(requestManager));
         performSearchSubscription = searchObservable
                 .observeOn(AndroidSchedulers.mainThread())
@@ -309,6 +313,7 @@ public class SearchPresenter extends Presenter<SearchView> implements
         SearchHeaderView songsHeader = new SearchHeaderView(new Header(ShuttleApplication.getInstance().getString(R.string.ahangify_songs)));
         ButtonView songsShowAll = new ButtonView(ShuttleApplication.getInstance().getString(R.string.show_all_results));
         ButtonView loadMoreResults = new ButtonView(ShuttleApplication.getInstance().getString(R.string.show_more_results));
+        CompositeDisposable disposables = new CompositeDisposable();
 
         SearchAPIFilterOperator(@NonNull RequestManager requestManager) {
             this.requestManager = requestManager;
@@ -326,41 +331,13 @@ public class SearchPresenter extends Presenter<SearchView> implements
                 public void onSuccess(AhangifySearchResult ahangifySearchResult) {
                     if (ahangifySearchResult.songs != null) {
                         List<Song> songs = Stream.of(ahangifySearchResult.songs.data).map(AhangifyTrack::getSong).collect(Collectors.toList());
-
-                        SongViewClickListener songViewClickListener = new SongViewClickListener(songs);
-                        List<ViewModel> viewModels = Stream.of(songs).limit(onlineMode ? SettingsManager.getInstance().getFullSearchLimit():SettingsManager.getInstance().getQuickSearchLimit()).map(song -> {
-                            SongView songView = new SongView(song, requestManager);
-                            songView.setClickListener(songViewClickListener);
-                            return  songView;
-                        }).collect(Collectors.toList());
-
-                        if (ahangifySearchResult.songs.last_page > ahangifySearchResult.songs.current_page) {
-                            if (onlineMode) {
-                                loadMoreResults.setListener((position, buttonView, viewHolder) -> {
-                                    SearchView searchView = getView();
-                                    if (searchView != null) {
-                                        searchView.removeItem(loadMoreResults);
-                                        searchView.addLoadingView();
-                                    }
-                                    loadMorePages();
-                                });
-                                viewModels.add(loadMoreResults);
-                            } else {
-                                songsShowAll.setListener((position, buttonView, viewHolder) -> {
-                                    SearchView searchView = getView();
-                                    if (searchView != null) {
-                                        searchView.goToOnlineSearch(query);
-                                    }
-                                });
-                                viewModels.add(songsShowAll);
-                            }
-                        }
-
-                        if (viewModels.size() > 0 && currentPage == 1) {
-                            viewModels.add(0, songsHeader);
-                        }
-
-                        observer.onSuccess(viewModels);
+                        List<String> uids = Stream.of(songs).map(song -> DownloadHelper.getInstance().getSongUID(song)).collect(Collectors.toList());
+                        disposables.add(
+                                DownloadHelper.getInstance().getDownloadsWithUIDs(uids)
+                                .subscribe(downloads -> {
+                                    aggregateDownloadsAndSearchResult(songs, downloads, ahangifySearchResult.songs.last_page > ahangifySearchResult.songs.current_page, observer);
+                                })
+                        );
                     } else {
                         observer.onSuccess(new ArrayList<>());
                     }
@@ -370,6 +347,54 @@ public class SearchPresenter extends Presenter<SearchView> implements
                 public void onError(Throwable e) {
                     /* pass success on network errors so local files will be visible! */
                     observer.onSuccess(new ArrayList<>());
+                }
+
+                private void aggregateDownloadsAndSearchResult(List<Song> songs, List<Download> downloads, boolean hasMore, SingleObserver<? super List<ViewModel>> observer) {
+                    SongViewClickListener songViewClickListener = new SongViewClickListener(songs);
+                    List<ViewModel> viewModels = Stream.of(songs).limit(
+                            onlineMode ?
+                                    SettingsManager.getInstance().getFullSearchLimit():
+                                    SettingsManager.getInstance().getQuickSearchLimit())
+                            .map(song -> {
+                                song.offline = Stream.of(downloads).filter(dl -> {
+                                    if (dl.getUid() != null) {
+                                        return dl.getUid().equals(DownloadHelper.getInstance().getSongUID(song));
+                                    }
+                                    return false;
+                                }).findFirst().orElse(null);
+                                SongView songView = new SongView(song, requestManager);
+                                songView.setClickListener(songViewClickListener);
+                                return  songView;
+                            })
+                            .collect(Collectors.toList());
+
+                    if (hasMore) {
+                        if (onlineMode) {
+                            loadMoreResults.setListener((position, buttonView, viewHolder) -> {
+                                SearchView searchView = getView();
+                                if (searchView != null) {
+                                    searchView.removeItem(loadMoreResults);
+                                    searchView.addLoadingView();
+                                }
+                                loadMorePages();
+                            });
+                            viewModels.add(loadMoreResults);
+                        } else {
+                            songsShowAll.setListener((position, buttonView, viewHolder) -> {
+                                SearchView searchView = getView();
+                                if (searchView != null) {
+                                    searchView.goToOnlineSearch(query);
+                                }
+                            });
+                            viewModels.add(songsShowAll);
+                        }
+                    }
+
+                    if (viewModels.size() > 0 && currentPage == 1) {
+                        viewModels.add(0, songsHeader);
+                    }
+
+                    observer.onSuccess(viewModels);
                 }
             };
         }
@@ -629,8 +654,46 @@ public class SearchPresenter extends Presenter<SearchView> implements
         @Override
         public void onSongOverflowClick(int position, View v, Song song) {
             PopupMenu menu = new PopupMenu(v.getContext(), v);
-            if (song.path != null && song.path.startsWith("online")) {
-                MenuUtils.setupOnlineSongMenu(menu);
+            if (song.onlineTrack != null) {
+                if (song.offline == null) {
+                    if (song.onlineTrack.files != null && song.onlineTrack.files.length > 0) {
+                        int defaultQuality = SettingsManager.getInstance().getDownloadDefaultQuality();
+                        if (defaultQuality == AhangifyFile.ASK && song.onlineTrack.files.length > 1) {
+                            if (getView() != null) {
+                                getView().showDownloadQualitySelectDialog(song);
+                            }
+                        } else {
+                            AhangifyFile target = song.onlineTrack.files[0];
+                            if (defaultQuality == AhangifyFile.BEST) {
+                                for (AhangifyFile file: song.onlineTrack.files) {
+                                    if (target.size < file.size) {
+                                        target = file;
+                                    }
+                                }
+                            } else if (defaultQuality == AhangifyFile.MEDIUM) {
+                                float mid = 0;
+                                for (AhangifyFile file: song.onlineTrack.files) {
+                                    mid += file.size;
+                                }
+                                mid /= song.onlineTrack.files.length;
+                                for (AhangifyFile file: song.onlineTrack.files) {
+                                    if (Math.abs(file.size - mid) > Math.abs(target.size - mid)) {
+                                        target = file;
+                                    }
+                                }
+                            } else if (defaultQuality == AhangifyFile.SMALLEST) {
+                                for (AhangifyFile file: song.onlineTrack.files) {
+                                    if (target.size > file.size) {
+                                        target = file;
+                                    }
+                                }
+                            }
+                            DownloadHelper.getInstance().startDownload(song, target);
+                        }
+                    } else {
+                        DownloadHelper.getInstance().startDownload(song);
+                    }
+                }
             } else {
                 MenuUtils.setupSongMenu(menu, false);
                 menu.setOnMenuItemClickListener(MenuUtils.getSongMenuClickListener(

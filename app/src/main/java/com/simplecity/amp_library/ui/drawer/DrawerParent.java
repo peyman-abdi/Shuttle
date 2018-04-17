@@ -44,6 +44,7 @@ public class DrawerParent implements Parent<DrawerChild> {
             return ShuttleUtils.isUpgraded();
         }
     };
+    static DrawerParent downloadsParent = new DrawerParent(Type.DOWNLOADS, R.string.downloads_history, R.drawable.ic_download_24dp, NavigationEventRelay.downloadsSelectedEvent, true);
 
     public @interface Type {
         int LIBRARY = 0;
@@ -53,6 +54,7 @@ public class DrawerParent implements Parent<DrawerChild> {
         int EQUALIZER = 4;
         int SETTINGS = 5;
         int SUPPORT = 6;
+        int DOWNLOADS = 7;
     }
 
     private boolean selectable = true;

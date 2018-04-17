@@ -145,9 +145,9 @@
     <string name="dialog_checkbox_playlist_duplicate_apply_all"><xliff:g id="number">%d</xliff:g>应用所有</string>
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
     <string name="dialog_title_playlist_duplicates">发现重复</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
     <string name="dialog_button_playlist_duplicate_add">添加</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <string name="dialog_button_playlist_duplicate_skip">跳过</string>
     <!-- Checkbox text 'always add duplicates' -->
     <string name="dialog_checkbox_playlist_duplicate_always_add">允许添加重复</string>
@@ -441,7 +441,7 @@ www.shuttlemusicplayer.com</string>
     <string name="disc_total">总音轨</string>
     <!-- Track count. i.e "1 of 15" -->
     <string name="track_count"><xliff:g id="track">%1$s</xliff:g>/<xliff:g id="total tracks">%2$s</xliff:g></string>
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">保存</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">编辑标签时发生错误</string>
@@ -521,7 +521,7 @@ www.shuttlemusicplayer.com</string>
     <string name="bass_boost_strength">低音增强</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">虚拟器强度</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">外部均衡器</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">自定义</string>
@@ -582,7 +582,7 @@ www.shuttlemusicplayer.com</string>
     <string name="sleep_timer_1_hour">1小时</string>
     <!-- Sleep timer label "Minutes" (limited space here) -->
     <string name="sleep_timer_label_minutes">分钟</string>
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">完成</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Shuttle应搜索「最近播放」的音乐选择过去多少周的时间</string>
@@ -602,9 +602,9 @@ www.shuttlemusicplayer.com</string>
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">新建播放列表<xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">保存</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">覆盖</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -733,7 +733,7 @@ www.shuttlemusicplayer.com</string>
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">歌词</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">未找到该嵌入歌词</string>

@@ -48,4 +48,7 @@ public interface SettingsView extends PurchaseView {
 
     void showSearchLimitDialog(MaterialDialog dialog);
 
+    void showMaxConcurrentDownloadsDialog(MaterialDialog dialog);
+    void showDownloadsLocationDialog(MaterialDialog dialog);
+    void showDownloadsQualityDialog(MaterialDialog dialog);
 }

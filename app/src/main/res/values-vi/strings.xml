@@ -143,9 +143,9 @@
     <string name="dialog_checkbox_playlist_duplicate_apply_all">Áp dụng cho tất cả (<xliff:g id="number">%d</xliff:g>)</string>
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
     <string name="dialog_title_playlist_duplicates">Tìm thấy mục trùng lặp</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
     <string name="dialog_button_playlist_duplicate_add">Thêm</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <string name="dialog_button_playlist_duplicate_skip">Bỏ qua</string>
     <!-- Checkbox text 'always add duplicates' -->
     <string name="dialog_checkbox_playlist_duplicate_always_add">Luôn thêm mục trùng lặp</string>
@@ -426,7 +426,7 @@
     <string name="disc_total">Tổng số đĩa</string>
     <!-- Track count. i.e "1 of 15" -->
     <string name="track_count"><xliff:g id="track">%1$s</xliff:g> trên <xliff:g id="total tracks">%2$s</xliff:g></string>
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Lưu</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">Lỗi đã xảy ra khi chỉnh sửa thẻ.</string>
@@ -506,7 +506,7 @@
     <string name="bass_boost_strength">Độ mạnh Bass</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Ảo hoá cường độ</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">Bộ chỉnh âm bên ngoài</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Tuỳ biến</string>
@@ -567,7 +567,7 @@
     <string name="sleep_timer_1_hour">1 giờ</string>
     <!-- Sleep timer label "Minutes" (limited space here) -->
     <string name="sleep_timer_label_minutes">phút</string>
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Xong</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Chọn số tuần trước đây mà Shuttle sẽ tìm nhạc \'gần đây\'.</string>
@@ -587,9 +587,9 @@
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">Danh sách mới <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Lưu</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Ghi đè</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -718,7 +718,7 @@
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Lời bài hát</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">Không tìm thấy lời nhúng sẵn</string>

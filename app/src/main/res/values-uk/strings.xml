@@ -149,9 +149,9 @@
     <string name="dialog_checkbox_playlist_duplicate_apply_all">Застосувати до всіх (<xliff:g id="number">%d</xliff:g>)</string>
     <!-- Title displayed in dialog when attempting to add duplicates to playlist -->
     <string name="dialog_title_playlist_duplicates">Виявлено дублікати</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Add) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Add) -->
     <string name="dialog_button_playlist_duplicate_add">Додати</string>
-    <!-- Button displayed in dialog when attempting to add duplicates to playlist (Skip) -->
+    <!-- BUTTON displayed in dialog when attempting to add duplicates to playlist (Skip) -->
     <string name="dialog_button_playlist_duplicate_skip">Пропустити</string>
     <!-- Checkbox text 'always add duplicates' -->
     <string name="dialog_checkbox_playlist_duplicate_always_add">Завжди додавати дублікати</string>
@@ -415,7 +415,7 @@
     <!-- -->
     <string name="track_number">Номер трека</string>
     <!-- Track count. i.e "1 of 15" -->
-    <!-- Button text for saving tags  -->
+    <!-- BUTTON text for saving tags  -->
     <string name="save">Зберегти</string>
     <!-- Message displayed when tag editing fails -->
     <string name="tag_error">Помилка редагування тегів.</string>
@@ -497,7 +497,7 @@
     <string name="bass_boost_strength">Рівень підсилювання басу</string>
     <!-- Virtualizer strength -->
     <string name="virtualizer_strength">Сила Virtualizer</string>
-    <!-- Button to open external equalizer (DSP manager) -->
+    <!-- BUTTON to open external equalizer (DSP manager) -->
     <string name="open_dsp">Зовнішній Еквалайзер</string>
     <!-- Equalizer 'custom' preset -->
     <string name="custom">Власні</string>
@@ -548,7 +548,7 @@
     <!-- Sleep timer "30 minutes" -->
     <!-- Sleep timer "1 hour" -->
     <!-- Sleep timer label "Minutes" (limited space here) -->
-    <!-- Button name in time span picker -->
+    <!-- BUTTON name in time span picker -->
     <string name="button_done">Готово</string>
     <!-- Title of time span picker -->
     <string name="weekpicker_title">Встановіть діапазон часу в минулому для пошуку Shuttle-ом \'нещодавної\' музики.</string>
@@ -568,9 +568,9 @@
     <!-- ## Playlist creation ## -->
     <!-- Template for newly created playlist name -->
     <string name="new_playlist_name_template">Новий плейлист <xliff:g id="number">%d</xliff:g></string>
-    <!-- Button name when saving a playlist -->
+    <!-- BUTTON name when saving a playlist -->
     <string name="create_playlist_create_text">Зберегти</string>
-    <!-- Button name when saving a playlist and the new playlist will overwrite an existing one -->
+    <!-- BUTTON name when saving a playlist and the new playlist will overwrite an existing one -->
     <string name="create_playlist_overwrite_text">Перезаписати</string>
     <!-- ## Various plurals ## -->
     <!-- used in various places to indicate there is one song for a given artist or album -->
@@ -703,7 +703,7 @@
     <!-- Lyrics -->
     <!-- QuickLyric button -->
     <string name="quicklyric">QuickLyric</string>
-    <!-- Button for lyrics -->
+    <!-- BUTTON for lyrics -->
     <string name="lyrics">Тексти пісень</string>
     <!-- Shown when there are no lyrics -->
     <string name="no_lyrics">Вбудованих текстів для цього треку не знайдено</string>

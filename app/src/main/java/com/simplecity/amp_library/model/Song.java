@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import com.simplecity.amp_library.R;
 import com.simplecity.amp_library.ShuttleApplication;
 import com.simplecity.amp_library.http.HttpClient;
+import com.simplecity.amp_library.http.ahangify.AhangifyTrack;
 import com.simplecity.amp_library.http.itunes.ItunesResult;
 import com.simplecity.amp_library.http.lastfm.LastFmResult;
 import com.simplecity.amp_library.sql.SqlUtils;
@@ -24,6 +25,7 @@ import com.simplecity.amp_library.utils.ComparisonUtils;
 import com.simplecity.amp_library.utils.FileHelper;
 import com.simplecity.amp_library.utils.LogUtils;
 import com.simplecity.amp_library.utils.StringUtils;
+import com.tonyodev.fetch2.Download;
 
 import java.io.File;
 import java.io.InputStream;
@@ -77,6 +79,9 @@ public class Song implements
 
     private String artworkKey;
     private String sortKey;
+
+    public AhangifyTrack onlineTrack;
+    public Download offline;
 
     public static String[] getProjection() {
         return new String[]{
