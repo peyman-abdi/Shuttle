@@ -12,6 +12,7 @@ import java.text.Normalizer;
 import java.util.Arrays;
 import java.util.Formatter;
 import java.util.Locale;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 public class StringUtils {
@@ -318,6 +319,20 @@ public class StringUtils {
             }
         }
         return new int[]{matches, transpositions / 2, prefix, max.length()};
+    }
+
+    private static Random rnd = new Random();
+    public static String getRandomFilename(String extension, int len) {
+        String chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+        StringBuffer buffer = new StringBuffer();
+        int sourceLen = chars.length();
+        for (int i = 0; i < len; i++) {
+            buffer.append(chars.charAt(Math.abs(rnd.nextInt()) % sourceLen));
+        }
+        if (extension != null) {
+            buffer.append(extension);
+        }
+        return buffer.toString();
     }
 
     public static int parseInt(@Nullable String string) {

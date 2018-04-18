@@ -1,0 +1,6 @@
+[submodule "libraries/Fetch"]
+	path = libraries/Fetch
+	url = git@github.com:peyman-abdi/Fetch.git
+[submodule "libraries/ServerProxy"]
+	path = libraries/ServerProxy
+	url = git@github.com:peyman-abdi/ServerProxy.git

@@ -1,6 +1,7 @@
 package com.simplecity.amp_library.http.ahangify;
 
 import com.google.gson.annotations.SerializedName;
+import com.simplecity.amp_library.http.HttpClient;
 import com.simplecity.amp_library.model.Song;
 
 /**
@@ -51,7 +52,7 @@ public class AhangifyTrack {
         song.isPodcast = false;
         song.playCount = 10;
 
-        song.path = "online";
+        song.path = "online://" + HttpClient.getAhangifyStreamURL(song, null);
 
         song.onlineTrack = this;
 

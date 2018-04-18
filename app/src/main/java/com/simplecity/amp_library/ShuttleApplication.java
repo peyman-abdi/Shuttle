@@ -46,6 +46,7 @@ import com.simplecity.amp_library.utils.LegacyUtils;
 import com.simplecity.amp_library.utils.LogUtils;
 import com.simplecity.amp_library.utils.SettingsManager;
 import com.simplecity.amp_library.utils.StringUtils;
+import com.simplecity.amp_library.utils.TempStorage;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -69,6 +70,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import github.daneren2005.serverproxy.WebProxy;
 import io.fabric.sdk.android.Fabric;
 import io.reactivex.Completable;
 import io.reactivex.CompletableTransformer;
@@ -97,6 +99,8 @@ public class ShuttleApplication extends Application {
     private static Logger jaudioTaggerLogger2 = Logger.getLogger("org.jaudiotagger");
 
     private AppComponent appComponent;
+
+    private WebProxy    internalProxy;
 
     @Override
     public void onCreate() {
@@ -215,6 +219,28 @@ public class ShuttleApplication extends Application {
         /* setup clients & start downloads */
         HttpClient.getInstance();
         DownloadHelper.getInstance().autoStartWaitingDownloads();
+
+        internalProxy = new WebProxy(getApplicationContext(), new WebProxy.TempFileGenerator() {
+            @Override
+            public String getTempFilePath() {
+                return TempStorage.getInstance().getRandomTempFile(".mp3");
+            }
+
+            @Override
+            public void validateTempFile(String path) {
+                Log.w("VALIDATE", path);
+            }
+
+            @Override
+            public void dismissTempFile(String path) {
+                Log.w("DISMISS", path);
+            }
+        });
+        internalProxy.start();
+    }
+
+    public String getProxyiedAddress(String url) {
+        return internalProxy.getPrivateAddress(url);
     }
 
     CompletableTransformer doOnDelay(long delay, TimeUnit timeUnit) {

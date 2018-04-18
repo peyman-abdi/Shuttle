@@ -5,5 +5,6 @@ include ':app',
         'libraries:recycler-adapter',
         'libraries:multisheetview',
         'libraries:aesthetic',
-        'libraries:fetch2',
-        'libraries:fetch2downloaders'
+        'libraries:fetch:fetch2',
+        'libraries:fetch:fetch2downloaders',
+        'libraries:serverproxy'

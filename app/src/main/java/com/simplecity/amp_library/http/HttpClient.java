@@ -102,6 +102,9 @@ public class HttpClient {
             return URL_AHANGIFY + AHANGIFY_DOWNLOAD_URL_PREFIX + song.id;
         }
     }
+    public static String getAhangifyStreamURL(Song song, AhangifyFile track) {
+        return URL_AHANGIFY + "/api/getfile/" + song.id;
+    }
     public static boolean isAhangifyFileUrl(String url) {
         return url.contains(AHANGIFY_DOWNLOAD_URL_PREFIX);
     }

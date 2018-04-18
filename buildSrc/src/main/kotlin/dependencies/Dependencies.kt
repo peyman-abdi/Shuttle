@@ -258,8 +258,10 @@ object Dependencies {
         val aesthetic = ":libraries:aesthetic"
 
         // Fetch - Download Manager
-        val fetch = ":libraries:fetch2"
-        val fetchDownloaders = ":libraries:fetch2downloaders"
+        val fetch = ":libraries:fetch:fetch2"
+        val fetchDownloaders = ":libraries:fetch:fetch2downloaders"
+
+        val serverproxy = ":libraries:serverproxy"
     }
 
     object BuildPlugins {

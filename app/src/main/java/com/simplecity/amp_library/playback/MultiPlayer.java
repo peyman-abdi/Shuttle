@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.crashlytics.android.core.CrashlyticsCore;
+import com.simplecity.amp_library.ShuttleApplication;
 import com.simplecity.amp_library.playback.constants.PlayerHandler;
 import com.simplecity.amp_library.utils.ShuttleUtils;
 
@@ -53,6 +54,9 @@ class MultiPlayer implements
             if (path.startsWith("content://")) {
                 Uri uri = Uri.parse(path);
                 mediaPlayer.setDataSource(mService.get(), uri);
+            } else if (path.startsWith("online://")) {
+                String proxy_url = ShuttleApplication.getInstance().getProxyiedAddress(path.substring("online://".length()));
+                mediaPlayer.setDataSource(mService.get(), Uri.parse(proxy_url));
             } else {
                 mediaPlayer.setDataSource(path);
             }

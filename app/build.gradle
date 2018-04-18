@@ -245,6 +245,7 @@ dependencies {
     implementation project(Dependencies.Projects.aesthetic)
     implementation project(Dependencies.Projects.fetch)
     implementation project(Dependencies.Projects.fetchDownloaders)
+    implementation project(Dependencies.Projects.serverproxy)
 
     // Rx
     implementation Dependencies.Rx.rxAndroid
